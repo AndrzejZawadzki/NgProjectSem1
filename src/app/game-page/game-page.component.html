@@ -1,0 +1,45 @@
+<div>
+  <h2>Welcome, {{ playerName }}!</h2>
+  <p>Game Status: {{ gameStatus }}</p>
+  <p>Points: {{ points }}</p>
+  <p>Time Spent: {{ timeSpent | date : "HH:mm:ss" }}</p>
+
+  <button (click)="exitGame()">Exit Game</button>
+  <button (click)="finishGame()">Finish</button>
+  <!--   <ngx-race #race (stateChange)="onRaceStateChange($event)"> -->
+  <!-- You can customize ngx-race appearance and behavior here -->
+  <!-- </ngx-race> -->
+
+  <!-- <button *ngIf="gameStatus === 'Ready'" (click)="startGame()">
+    Start Game
+  </button>
+  <button *ngIf="gameStatus === 'Started'" (click)="pauseGame()">
+    Pause Game
+  </button> -->
+  <!-- <button *ngIf="gameStatus === 'Paused'" (click)="resumeGame()">
+    Resume Game
+  </button> -->
+  <!-- <button *ngIf="gameStatus === 'Started'" (click)="endGame()">End Game</button> -->
+
+  <!-- Display gameplay history -->
+  <!-- <div>
+    <h3>Gameplay History</h3>
+    <label>Filter by Event Type:</label>
+    <select [(ngModel)]="selectedEventType" (change)="filterGameplayHistory()">
+      <option value="all">All Events</option>
+      <option value="lineCleared">Line Cleared</option>
+    </select>
+
+    <label>Sort by Timestamp:</label>
+    <select [(ngModel)]="sortOrder" (change)="filterGameplayHistory()">
+      <option value="latestFirst">Latest First</option>
+      <option value="oldestFirst">Oldest First</option>
+    </select>
+
+    <ul>
+      <li *ngFor="let event of filteredGameplayHistory">
+        {{ event.timestamp | date : "medium" }} - {{ event.action }}
+      </li>
+    </ul>
+  </div> -->
+</div>

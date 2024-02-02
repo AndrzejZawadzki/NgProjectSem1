@@ -1,0 +1,30 @@
+<div>
+  <h2>Welcome to the Game!</h2>
+  <p>
+    This is a fun and exciting game. Fill out the form below to get started!
+  </p>
+
+  <form (ngSubmit)="startGame()">
+    <div>
+      <label for="playerName">Player Name:</label>
+      <input
+        id="playerName"
+        name="playerName"
+        [(ngModel)]="playerName"
+        required
+      />
+    </div>
+    <div>
+      <label for="playerEmail">Player Email:</label>
+      <input
+        id="playerEmail"
+        name="playerEmail"
+        [(ngModel)]="playerEmail"
+        required
+        email
+      />
+    </div>
+
+    <button type="submit" [disabled]="false">Start Game</button>
+  </form>
+</div>

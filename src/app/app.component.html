@@ -1,0 +1,14 @@
+<div>
+  <app-intro-page
+    *ngIf="currentPage === 'introPage'"
+    (startGameEvent)="startGame($event)"
+  ></app-intro-page>
+  <app-game-page
+    *ngIf="currentPage === 'gamePage'"
+    [playerName]="currentPlayerName"
+    (exitGameEvent)="exitGame()"
+    (finishGameEvent)="finishGame()"
+  ></app-game-page>
+</div>
+
+{{ currentPage }}
