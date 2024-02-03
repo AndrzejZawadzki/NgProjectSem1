@@ -134,17 +134,17 @@ export class GamePageComponent {
   }
 */
 }
-export class RaceContainingComponent {
-  /*  @ViewChild(NgxRaceComponent)*/
+/* export class RaceContainingComponent {
+   @ViewChild(NgxRaceComponent)
   private _race: NgxRaceComponent;
 
   public onTurboOnButtonPressed() {
     this._race.actionTurboOn();
   }
   public onTurboOffButtonPressed() {
-    this._race.actionTurboOff();
-  }
-  /* public onActionStartButtonPressed() {
+    this._race.actionTurboOff(); 
+  }*/
+/* public onActionStartButtonPressed() {
     this._race.actionStart();
   }
   public onActionStopButtonPressed() {
@@ -158,5 +158,5 @@ export class RaceContainingComponent {
   }
   public onActionRightButtonPressed() {
     this._race.actionRight();
-  } */
-}
+  } 
+}*/
