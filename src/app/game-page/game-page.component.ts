@@ -65,7 +65,7 @@ export class GamePageComponent {
   }
 
   onLineCleared() {
-    this.points += 10; // Adjust points calculation as needed
+    this.points += 10; 
     this.updateGameplayHistory('Line Cleared');
   }
 
@@ -109,7 +109,6 @@ export class GamePageComponent {
   }
 
   onRaceStateChange(state: NgxRaceModule) {
-    // Handle ngx-race state changes if needed
     if (state === NgxRaceModule.ENDED) {
       this.endGame();
     }
