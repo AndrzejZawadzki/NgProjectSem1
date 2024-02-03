@@ -11,6 +11,7 @@
   ></app-game-page>
   <app-score-page
     *ngIf="currentPage === 'scorePage'"
+    [playerName]="currentPlayerName"
     (exitGameEvent)="exitGame()"
     (startGameEvent)="startGame($event)"
   ></app-score-page>

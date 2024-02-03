@@ -1,16 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-score-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AppComponent],
   templateUrl: './score-page.component.html',
   styleUrl: './score-page.component.scss',
 })
 export class ScorePageComponent {
-  @Input() playerName: string = '';
-  @Input() playerEmail: string = '';
+  @Input() playerName = '';
+  @Input() playerEmail = '';
   @Output() exitGameEvent = new EventEmitter<void>();
   @Output() startGameEvent = new EventEmitter<{
     playerName: string;
