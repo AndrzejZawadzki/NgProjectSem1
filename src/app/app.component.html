@@ -9,5 +9,9 @@
     (exitGameEvent)="exitGame()"
     (finishGameEvent)="finishGame()"
   ></app-game-page>
-  <app-score-page *ngIf="currentPage === 'scorePage'"></app-score-page>
+  <app-score-page
+    *ngIf="currentPage === 'scorePage'"
+    (exitGameEvent)="exitGame()"
+    (startGameEvent)="startGame($event)"
+  ></app-score-page>
 </div>

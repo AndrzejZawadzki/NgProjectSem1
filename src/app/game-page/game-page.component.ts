@@ -5,7 +5,8 @@ import {
   EventEmitter,
   ViewChild,
 } from '@angular/core';
-import { NgxRaceComponent, NgxRaceModule } from 'ngx-race';
+/* import { NgxRaceComponent, NgxRaceModule } from 'ngx-race';
+ */
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -20,12 +21,12 @@ export class GamePageComponent {
   @Output() exitGameEvent = new EventEmitter<void>();
   @Output() finishGameEvent = new EventEmitter<void>();
 
-  @ViewChild(NgxRaceComponent)
+  /*   @ViewChild(NgxRaceComponent)
   private _race!: NgxRaceComponent;
-
+ */
   gameStatus: string = 'Ready';
   points: number = 0;
-  timeSpent: number = 0; // in seconds
+  timeSpent: number = 0;
   gameplayHistory: { timestamp: Date; action: string }[] = [];
   selectedEventType: string = 'all';
   sortOrder: string = 'latestFirst';
