@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-score-page',
   standalone: true,
-  imports: [CommonModule, AppComponent],
+  imports: [CommonModule],
   templateUrl: './score-page.component.html',
   styleUrl: './score-page.component.scss',
 })
