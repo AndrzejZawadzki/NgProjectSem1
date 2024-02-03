@@ -9,6 +9,5 @@
     (exitGameEvent)="exitGame()"
     (finishGameEvent)="finishGame()"
   ></app-game-page>
+  <app-score-page *ngIf="currentPage === 'scorePage'"></app-score-page>
 </div>
-
-{{ currentPage }}
