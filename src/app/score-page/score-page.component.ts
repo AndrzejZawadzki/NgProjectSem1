@@ -10,6 +10,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ScorePageComponent {
   @Input() playerName: string = '';
+  @Input() playerEmail: string = '';
   @Output() exitGameEvent = new EventEmitter<void>();
   @Output() startGameEvent = new EventEmitter<{
     playerName: string;
@@ -21,6 +22,9 @@ export class ScorePageComponent {
   }
 
   startGame() {
-    this.startGameEvent.emit();
+    this.startGameEvent.emit({
+      playerName: this.playerName,
+      playerEmail: this.playerEmail,
+    });
   }
 }
