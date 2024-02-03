@@ -17,17 +17,25 @@ import { ScorePageComponent } from './score-page/score-page.component';
   standalone: true,
 })
 export class AppComponent {
-  currentPage: 'introPage' | 'gamePage' | 'scorePage' = 'introPage';
+  currentPage: 'introPage' | 'gamePage' | 'scorePage' | null = 'introPage';
   currentPlayerName: string = '';
+  currentPlayerEmail: string = '';
+  currentGameData: {};
+  gameData: {
+    events: Event[];
+    score: number;
+    gamePlayTime: number;
+  };
 
   startGame(event: { playerName: string; playerEmail: string }) {
     this.currentPlayerName = event.playerName;
     this.currentPage = 'gamePage';
+    this.currentPlayerEmail = event.playerEmail;
   }
   exitGame() {
-    this.currentPage = 'introPage';
+    this.currentPage = null;
   }
-  finishGame() {
+  finishGame(event: { playerName: string; playerEmail: string }) {
     this.currentPage = 'scorePage';
   }
 }

@@ -2,7 +2,7 @@
   <h2>Welcome, {{ playerName }}!</h2>
   <p>Game Status: {{ gameStatus }}</p>
   <p>Points: {{ points }}</p>
-  <p>Time Spent: {{ timeSpent | date : "HH:mm:ss" }}</p>
+  <p>Time Spent: {{ timeSpent | date : "mm:ss" }}</p>
 
   <button (click)="exitGame()">Exit Game</button>
   <button (click)="finishGame()">Finish</button>

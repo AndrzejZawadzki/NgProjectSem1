@@ -18,8 +18,12 @@ import { CommonModule } from '@angular/common';
 })
 export class GamePageComponent {
   @Input() playerName: string = '';
+  @Input() playerEmail: string = '';
   @Output() exitGameEvent = new EventEmitter<void>();
-  @Output() finishGameEvent = new EventEmitter<void>();
+  @Output() finishGameEvent = new EventEmitter<{
+    playerName: string;
+    playerEmail: string;
+  }>();
 
   /*   @ViewChild(NgxRaceComponent)
   private _race!: NgxRaceComponent;
