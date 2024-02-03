@@ -39,4 +39,6 @@ export class AppComponent {
   finishGame(event: { playerName: string; playerEmail: string }) {
     this.currentPage = 'scorePage';
   }
+  onTurboOnButtonPressed() {}
+  onTurboOffButtonPressed() {}
 }

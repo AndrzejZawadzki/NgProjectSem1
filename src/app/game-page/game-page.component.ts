@@ -4,10 +4,20 @@ import {
   Output,
   EventEmitter,
   ViewChild,
+  NgModule,
 } from '@angular/core';
-/* import { NgxRaceComponent, NgxRaceModule } from 'ngx-race';
- */
+import { NgxRaceModule, NgxRaceComponent } from 'ngx-race';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from '../app.component';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule, NgxRaceModule, NgxRaceComponent, ViewChild],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
 
 @Component({
   selector: 'app-game-page',
@@ -24,10 +34,9 @@ export class GamePageComponent {
     playerName: string;
     playerEmail: string;
   }>();
+  @Output() onTurboOnButtonPressedEvent = new EventEmitter<void>();
+  @Output() onTurboOffButtonPressedEvent = new EventEmitter<void>();
 
-  /*   @ViewChild(NgxRaceComponent)
-  private _race!: NgxRaceComponent;
- */
   gameStatus: string = 'Ready';
   points: number = 0;
   timeSpent: number = 0;
@@ -38,9 +47,14 @@ export class GamePageComponent {
   exitGame() {
     this.exitGameEvent.emit();
   }
-
   finishGame() {
     this.finishGameEvent.emit();
+  }
+  onTurboOnButtonPressed() {
+    this.onTurboOnButtonPressedEvent.emit();
+  }
+  onTurboOffButtonPressed() {
+    this.onTurboOffButtonPressedEvent.emit();
   }
   /* 
   startGame() {
@@ -119,4 +133,30 @@ export class GamePageComponent {
     }
   }
 */
+}
+export class RaceContainingComponent {
+  /*  @ViewChild(NgxRaceComponent)*/
+  private _race: NgxRaceComponent;
+
+  public onTurboOnButtonPressed() {
+    this._race.actionTurboOn();
+  }
+  public onTurboOffButtonPressed() {
+    this._race.actionTurboOff();
+  }
+  /* public onActionStartButtonPressed() {
+    this._race.actionStart();
+  }
+  public onActionStopButtonPressed() {
+    this._race.actionStop();
+  }
+  public onActionResetButtonPressed() {
+    this._race.actionReset();
+  }
+  public onActionLeftButtonPressed() {
+    this._race.actionLeft();
+  }
+  public onActionRightButtonPressed() {
+    this._race.actionRight();
+  } */
 }

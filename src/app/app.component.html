@@ -8,6 +8,8 @@
     [playerName]="currentPlayerName"
     (exitGameEvent)="exitGame()"
     (finishGameEvent)="finishGame($event)"
+    (onTurboOnButtonPressedEvent)="game.actionTurboOn()"
+    (onTurboOffButtonPressedEvent)="game.actionTurboOff()"
   ></app-game-page>
   <app-score-page
     *ngIf="currentPage === 'scorePage'"
