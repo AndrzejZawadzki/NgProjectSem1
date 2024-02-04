@@ -4,12 +4,9 @@ import {
   Output,
   EventEmitter,
   ViewChild,
-  NgModule,
 } from '@angular/core';
 import { NgxRaceModule, NgxRaceComponent } from 'ngx-race';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-game-page',
@@ -26,17 +23,14 @@ export class GamePageComponent {
     playerName: string;
     playerEmail: string;
   }>();
-  @Output() onTurboOnButtonPressedEvent = new EventEmitter<void>();
-  @Output() onTurboOffButtonPressedEvent = new EventEmitter<void>();
-  @Output() actionStartEvent = new EventEmitter<void>();
-
-  @Output()
+  timer: NodeJS.Timer;
   gameStatus: string = 'Ready';
   points: number = 0;
   timeSpent: number = 0;
   gameplayHistory: { timestamp: Date; action: string }[] = [];
   selectedEventType: string = 'all';
   sortOrder: string = 'latestFirst';
+
   @ViewChild(NgxRaceComponent)
   private _race: NgxRaceComponent;
   public onTurboOnButtonPressed() {
@@ -67,29 +61,25 @@ export class GamePageComponent {
   finishGame() {
     this.finishGameEvent.emit();
   }
-  /* onTurboOnButtonPressed() {
-    this.onTurboOnButtonPressedEvent.emit();
-  }
-  onTurboOffButtonPressed() {
-    this.onTurboOffButtonPressedEvent.emit(); 
-  }
-*/
+
   startGame() {
     this.gameStatus = 'Started';
     this._race.actionStart(); // Start ngx-race
     //this.updateGameplayHistory('Game Started');
-    this.updateTimeSpent(); // Start tracking time
+    this.startTimer(); // Start tracking time
   }
 
-  pauseGame() {
+  stopGame() {
     this.gameStatus = 'Paused';
-    this._race.actionStop(); // Pause ngx-race
+    this._race.actionStop();
+    this.stopTimer(); // Pause ngx-race
     //this.updateGameplayHistory('Game Paused');
   }
 
   resumeGame() {
     this.gameStatus = 'Started';
-    this._race.actionStart(); // Resume ngx-race
+    this._race.actionStart();
+    this.startTimer(); // Resume ngx-race
     //this.updateGameplayHistory('Game Resumed');
   }
 
@@ -99,20 +89,28 @@ export class GamePageComponent {
     //this.updateGameplayHistory('Game Ended');
     this.calculatePoints();
   }
+  resetGame() {
+    this.gameStatus = 'Ready';
+    this._race.actionReset();
+    this.stopTimer();
+    this.timeSpent = 0;
+    this.points = 0;
+  }
 
-  onLineCleared() {
+  grantPoints() {
     this.points += 10;
     //this.updateGameplayHistory('Line Cleared');
   }
 
-  updateTimeSpent() {
-    setInterval(() => {
-      if (this.gameStatus === 'Started') {
-        this.timeSpent++;
-      }
+  startTimer() {
+    this.stopTimer();
+    this.timer = setInterval(() => {
+      this.timeSpent = this.timeSpent + 1000;
     }, 1000);
   }
-
+  stopTimer() {
+    clearInterval(this.timer as any);
+  }
   calculatePoints() {}
 
   /*   updateGameplayHistory(action: string) {

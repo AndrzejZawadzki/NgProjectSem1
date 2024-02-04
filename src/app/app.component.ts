@@ -18,7 +18,7 @@ type Player = string;
   standalone: true,
 })
 export class AppComponent {
-  currentPage: 'introPage' | 'gamePage' | 'scorePage' | null = 'introPage';
+  currentPage: 'introPage' | 'gamePage' | 'scorePage' | null = 'gamePage';
   currentPlayerName: string = '';
   currentPlayerEmail: string = '';
 
