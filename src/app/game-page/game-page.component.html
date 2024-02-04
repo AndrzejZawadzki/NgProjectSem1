@@ -12,13 +12,12 @@
   <button (click)="game.actionStart()">Start</button>
   <button (click)="game.actionStop()">Stop</button>
   <button (click)="game.actionReset()">Reset</button>
-  <button (click)="onTurboOnButtonPressed()">Turbo ON</button>
+  <button (click)="game.actionTurboOn()">Turbo ON</button>
   <button (click)="game.actionLeft()">Left</button>
   <button (click)="game.actionRight()">Right</button>
-  <button (click)="onTurboOffButtonPressed()">Turbo OFF</button>
+  <button (click)="game.actionTurboOff()">Turbo OFF</button>
 
   <!--  <ngx-race #race (stateChange)="onRaceStateChange($event)">
-    <!-- You can customize ngx-race appearance and behavior here 
   </ngx-race> -->
 
   <!-- <button *ngIf="gameStatus === 'Ready'" (click)="startGame()">

@@ -11,20 +11,6 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from '../app.component';
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    NgxRaceModule,
-    NgxRaceComponent,
-    ViewChild,
-    CommonModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-})
-export class AppModule {}
-
 @Component({
   selector: 'app-game-page',
   templateUrl: './game-page.component.html',
@@ -43,6 +29,7 @@ export class GamePageComponent {
   @Output() onTurboOnButtonPressedEvent = new EventEmitter<void>();
   @Output() onTurboOffButtonPressedEvent = new EventEmitter<void>();
   @Output() actionStartEvent = new EventEmitter<void>();
+
   @Output()
   gameStatus: string = 'Ready';
   points: number = 0;

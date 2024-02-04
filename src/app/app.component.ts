@@ -3,6 +3,7 @@ import { IntroPageComponent } from './intro-page/intro-page.component';
 import { GamePageComponent } from './game-page/game-page.component';
 import { CommonModule } from '@angular/common';
 import { ScorePageComponent } from './score-page/score-page.component';
+
 type Player = string;
 @Component({
   selector: 'app-root',
