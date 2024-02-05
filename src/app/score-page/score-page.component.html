@@ -1,5 +1,8 @@
 <div>
   <h2>Game over, {{ playerName }}!</h2>
+  <p>Game Status: {{ gameStatus }}</p>
+  <p>Points: {{ points }}</p>
+  <p>Time Spent: {{ timeSpent | date : "mm:ss" }}</p>
   <button (click)="exitGame()">Exit Game</button>
   <br /><br />
   <button (click)="startGame()">Play Again</button>

@@ -11,6 +11,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class ScorePageComponent {
   @Input() playerName = '';
   @Input() playerEmail = '';
+  @Input() gameStatus = '';
+  @Input() points = 0;
+  @Input() timeSpent = 0;
   @Output() exitGameEvent = new EventEmitter<void>();
   @Output() startGameEvent = new EventEmitter<{
     playerName: string;

@@ -22,6 +22,9 @@ export class GamePageComponent {
   @Output() finishGameEvent = new EventEmitter<{
     playerName: string;
     playerEmail: string;
+    gameStatus: string;
+    points: number;
+    timeSpent: number;
   }>();
   timer: NodeJS.Timer;
   gameStatus: string = 'Ready';
@@ -59,7 +62,13 @@ export class GamePageComponent {
     this.exitGameEvent.emit();
   }
   finishGame() {
-    this.finishGameEvent.emit();
+    this.finishGameEvent.emit({
+      playerName: this.playerName,
+      playerEmail: this.playerEmail,
+      gameStatus: this.gameStatus,
+      points: this.points,
+      timeSpent: this.timeSpent,
+    });
   }
 
   startGame() {
@@ -112,6 +121,10 @@ export class GamePageComponent {
     clearInterval(this.timer as any);
   }
   calculatePoints() {}
+  gameOver() {
+    this.stopTimer();
+    this.gameStatus = 'Ended';
+  }
 
   /*   updateGameplayHistory(action: string) {
     this.gameplayHistory.push({ timestamp: new Date(), action });

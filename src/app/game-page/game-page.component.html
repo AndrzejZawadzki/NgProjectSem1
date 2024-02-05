@@ -7,7 +7,11 @@
   <button (click)="exitGame()">Exit Game</button>
   <button (click)="finishGame()">Finish</button>
 
-  <ngx-race #game (carOvertaken)="grantPoints()"></ngx-race>
+  <ngx-race
+    #game
+    (carOvertaken)="grantPoints()"
+    (gameOver)="gameOver()"
+  ></ngx-race>
   <br />
   <br />
   <button (click)="startGame()">Start</button>

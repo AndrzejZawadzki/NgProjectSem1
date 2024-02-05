@@ -21,6 +21,9 @@ export class AppComponent {
   currentPage: 'introPage' | 'gamePage' | 'scorePage' | null = 'gamePage';
   currentPlayerName: string = '';
   currentPlayerEmail: string = '';
+  currentGameStatus: string = '';
+  currentPoints: number = 0;
+  currentTimeSpent: number;
 
   gameData: {
     events: Event[];
@@ -35,11 +38,20 @@ export class AppComponent {
     this.currentPlayerEmail = event.playerEmail;
   }
   exitGame() {
-    this.currentPage = null;
+    this.currentPage = 'introPage';
   }
-  finishGame(event: { playerName: string; playerEmail: string }) {
+  finishGame(event: {
+    playerName: string;
+    playerEmail: string;
+    gameStatus: string;
+    points: number;
+    timeSpent: number;
+  }) {
     this.currentPage = 'scorePage';
+    this.currentPlayerName = event.playerName;
+    this.currentPlayerEmail = event.playerEmail;
+    this.currentGameStatus = event.gameStatus;
+    this.currentPoints = event.points;
+    this.currentTimeSpent = event.timeSpent;
   }
-  onTurboOnButtonPressed() {}
-  onTurboOffButtonPressed() {}
 }
