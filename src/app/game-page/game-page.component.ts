@@ -95,7 +95,6 @@ export class GamePageComponent {
   endGame() {
     this.gameStatus = 'Ended';
     this._race.actionStop();
-
     // End ngx-race
     this.updateGameplayHistory('Game Ended');
   }
@@ -106,10 +105,31 @@ export class GamePageComponent {
     this.timeSpent = 0;
     this.points = 0;
   }
+  turboOn() {
+    this._race.actionTurboOn();
+    this.updateGameplayHistory('Turbo On');
+    this.points += 3;
+  }
+  turboOff() {
+    this._race.actionTurboOff();
+    this.updateGameplayHistory('Turbo Off');
+  }
 
   grantPoints() {
     this.points += 10;
     this.updateGameplayHistory('Car overtaken');
+  }
+
+  actionLeft() {
+    this._race.actionLeft();
+    this.updateGameplayHistory('Action Left');
+    this.points -= 1;
+  }
+
+  actionRight() {
+    this._race.actionRight();
+    this.updateGameplayHistory('Action Right');
+    this.points -= 1;
   }
 
   startTimer() {

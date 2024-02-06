@@ -14,9 +14,6 @@
   ></ngx-race>
   <br />
   <br />
-  <!-- <button (click)="startGame()">Start</button>
-  <button (click)="stopGame()">Stop</button> -->
-
   <button *ngIf="gameStatus === 'Ready'" (click)="startGame()">
     Start Game
   </button>
@@ -26,20 +23,20 @@
   <button *ngIf="gameStatus === 'Paused'" (click)="startGame()">
     Resume Game
   </button>
-  <button *ngIf="gameStatus === 'Started'" (click)="endGame()">End Game</button>
+  <button *ngIf="gameStatus !== 'Ready'" (click)="endGame()">End Game</button>
+
+  <button *ngIf="gameStatus !== 'Ready'" (click)="resetGame()">Reset</button>
   <br />
-  <button (click)="resetGame()">Reset</button>
+  <button (click)="actionLeft()">Left</button>
+  <button (click)="actionRight()">Right</button>
   <br />
-  <button (click)="game.actionLeft()">Left</button>
-  <button (click)="game.actionRight()">Right</button>
-  <br />
-  <button (click)="game.actionTurboOn()">Turbo ON</button>
-  <button (click)="game.actionTurboOff()">Turbo OFF</button>
+  <button (click)="turboOn()">Turbo ON</button>
+  <button (click)="turboOff()">Turbo OFF</button>
 
   <!-- Display gameplay history -->
   <div>
     <h3>Gameplay History</h3>
-    <!-- <label>Filter by Event Type:</label>
+    <label>Filter by Event Type:</label>
     <select [(ngModel)]="selectedEventType" (change)="filterGameplayHistory()">
       <option value="all">All Events</option>
       <option value="lineCleared">Line Cleared</option>
@@ -49,7 +46,7 @@
     <select [(ngModel)]="sortOrder" (change)="filterGameplayHistory()">
       <option value="latestFirst">Latest First</option>
       <option value="oldestFirst">Oldest First</option>
-    </select> -->
+    </select>
 
     <ul>
       <li *ngFor="let event of gameplayHistory">
