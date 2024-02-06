@@ -74,7 +74,7 @@ export class GamePageComponent {
   startGame() {
     this.gameStatus = 'Started';
     this._race.actionStart(); // Start ngx-race
-    //this.updateGameplayHistory('Game Started');
+    this.updateGameplayHistory('Game Started');
     this.startTimer(); // Start tracking time
   }
 
@@ -82,21 +82,22 @@ export class GamePageComponent {
     this.gameStatus = 'Paused';
     this._race.actionStop();
     this.stopTimer(); // Pause ngx-race
-    //this.updateGameplayHistory('Game Paused');
+    this.updateGameplayHistory('Game Paused');
   }
 
   resumeGame() {
     this.gameStatus = 'Started';
     this._race.actionStart();
     this.startTimer(); // Resume ngx-race
-    //this.updateGameplayHistory('Game Resumed');
+    this.updateGameplayHistory('Game Resumed');
   }
 
   endGame() {
     this.gameStatus = 'Ended';
-    this._race.actionStop(); // End ngx-race
-    //this.updateGameplayHistory('Game Ended');
-    this.calculatePoints();
+    this._race.actionStop();
+
+    // End ngx-race
+    this.updateGameplayHistory('Game Ended');
   }
   resetGame() {
     this.gameStatus = 'Ready';
@@ -108,7 +109,7 @@ export class GamePageComponent {
 
   grantPoints() {
     this.points += 10;
-    //this.updateGameplayHistory('Line Cleared');
+    this.updateGameplayHistory('Car overtaken');
   }
 
   startTimer() {
@@ -120,16 +121,17 @@ export class GamePageComponent {
   stopTimer() {
     clearInterval(this.timer as any);
   }
-  calculatePoints() {}
+
   gameOver() {
     this.stopTimer();
     this.gameStatus = 'Ended';
+    this.finishGame();
   }
 
-  /*   updateGameplayHistory(action: string) {
+  updateGameplayHistory(action: string) {
     this.gameplayHistory.push({ timestamp: new Date(), action });
-    this.filterGameplayHistory();
-  } */
+    //this.filterGameplayHistory();
+  }
 
   /*  filterGameplayHistory() {
     if (this.selectedEventType === 'all') {
@@ -161,31 +163,3 @@ export class GamePageComponent {
 
 } */
 }
-
-/* export class RaceContainingComponent {
-  @ViewChild(NgxRaceComponent)
-  private _race: NgxRaceComponent;
-
-  public onTurboOnButtonPressed() {
-    this._race.actionTurboOn();
-  }
-  public onTurboOffButtonPressed() {
-    this._race.actionTurboOff();
-  }
-  public onActionStartButtonPressed() {
-    this._race.actionStart();
-  }
-  public onActionStopButtonPressed() {
-    this._race.actionStop();
-  }
-  public onActionResetButtonPressed() {
-    this._race.actionReset();
-  }
-  public onActionLeftButtonPressed() {
-    this._race.actionLeft();
-  }
-  public onActionRightButtonPressed() {
-    this._race.actionRight();
-  } 
-}
-*/

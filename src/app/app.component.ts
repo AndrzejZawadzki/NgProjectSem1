@@ -25,12 +25,7 @@ export class AppComponent {
   currentPoints: number = 0;
   currentTimeSpent: number;
 
-  gameData: {
-    events: Event[];
-    score: number;
-    gamePlayTime: number;
-  };
-  allPlayers: Player[] = [];
+  gameplayHistory: { userName: string; timestamp: Date; action: string }[] = [];
 
   startGame(event: { playerName: string; playerEmail: string }) {
     this.currentPlayerName = event.playerName;

@@ -14,29 +14,32 @@
   ></ngx-race>
   <br />
   <br />
-  <button (click)="startGame()">Start</button>
-  <button (click)="stopGame()">Stop</button>
-  <button (click)="resetGame()">Reset</button>
-  <button (click)="game.actionTurboOn()">Turbo ON</button>
-  <button (click)="game.actionLeft()">Left</button>
-  <button (click)="game.actionRight()">Right</button>
-  <button (click)="game.actionTurboOff()">Turbo OFF</button>
+  <!-- <button (click)="startGame()">Start</button>
+  <button (click)="stopGame()">Stop</button> -->
 
-  <!-- <button *ngIf="gameStatus === 'Ready'" (click)="startGame()">
+  <button *ngIf="gameStatus === 'Ready'" (click)="startGame()">
     Start Game
   </button>
-  <button *ngIf="gameStatus === 'Started'" (click)="pauseGame()">
+  <button *ngIf="gameStatus === 'Started'" (click)="stopGame()">
     Pause Game
   </button>
-  <button *ngIf="gameStatus === 'Paused'" (click)="resumeGame()">
+  <button *ngIf="gameStatus === 'Paused'" (click)="startGame()">
     Resume Game
   </button>
-  <button *ngIf="gameStatus === 'Started'" (click)="endGame()">End Game</button> -->
+  <button *ngIf="gameStatus === 'Started'" (click)="endGame()">End Game</button>
+  <br />
+  <button (click)="resetGame()">Reset</button>
+  <br />
+  <button (click)="game.actionLeft()">Left</button>
+  <button (click)="game.actionRight()">Right</button>
+  <br />
+  <button (click)="game.actionTurboOn()">Turbo ON</button>
+  <button (click)="game.actionTurboOff()">Turbo OFF</button>
 
   <!-- Display gameplay history -->
-  <!-- <div>
+  <div>
     <h3>Gameplay History</h3>
-    <label>Filter by Event Type:</label>
+    <!-- <label>Filter by Event Type:</label>
     <select [(ngModel)]="selectedEventType" (change)="filterGameplayHistory()">
       <option value="all">All Events</option>
       <option value="lineCleared">Line Cleared</option>
@@ -46,12 +49,12 @@
     <select [(ngModel)]="sortOrder" (change)="filterGameplayHistory()">
       <option value="latestFirst">Latest First</option>
       <option value="oldestFirst">Oldest First</option>
-    </select>
+    </select> -->
 
     <ul>
-      <li *ngFor="let event of filteredGameplayHistory">
+      <li *ngFor="let event of gameplayHistory">
         {{ event.timestamp | date : "medium" }} - {{ event.action }}
       </li>
     </ul>
-  </div> -->
+  </div>
 </div>
