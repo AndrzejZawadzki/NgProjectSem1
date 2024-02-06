@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { NgxRaceModule, NgxRaceComponent } from 'ngx-race';
 import { CommonModule } from '@angular/common';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-game-page',
@@ -145,7 +146,9 @@ export class GamePageComponent {
   gameOver() {
     this.stopTimer();
     this.gameStatus = 'Ended';
-    this.finishGame();
+    setTimeout(() => {
+      this.finishGame();
+    }, 1000);
   }
 
   updateGameplayHistory(action: string) {

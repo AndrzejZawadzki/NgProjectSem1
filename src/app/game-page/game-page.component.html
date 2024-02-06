@@ -36,7 +36,7 @@
   <!-- Display gameplay history -->
   <div>
     <h3>Gameplay History</h3>
-    <label>Filter by Event Type:</label>
+    <!-- <label>Filter by Event Type:</label>
     <select [(ngModel)]="selectedEventType" (change)="filterGameplayHistory()">
       <option value="all">All Events</option>
       <option value="lineCleared">Line Cleared</option>
@@ -47,7 +47,7 @@
       <option value="latestFirst">Latest First</option>
       <option value="oldestFirst">Oldest First</option>
     </select>
-
+ -->
     <ul>
       <li *ngFor="let event of gameplayHistory">
         {{ event.timestamp | date : "medium" }} - {{ event.action }}
