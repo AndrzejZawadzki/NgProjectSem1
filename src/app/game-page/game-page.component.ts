@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { NgxRaceModule, NgxRaceComponent } from 'ngx-race';
 import { CommonModule } from '@angular/common';
-import { timeout } from 'rxjs';
 import { FilterPipe } from '../filter.pipe';
 import { gameplayHistory } from '../models';
 import { FormsModule } from '@angular/forms';
@@ -29,15 +28,15 @@ export class GamePageComponent {
     gameStatus: string;
     points: number;
     timeSpent: number;
+    selectedAction: string;
+    gameplayHistory: gameplayHistory[];
   }>();
   timer: NodeJS.Timer;
   gameStatus: string = 'Ready';
   points: number = 0;
   timeSpent: number = 0;
   gameplayHistory: gameplayHistory[] = [];
-  //selectedEventType: string = 'all';
-  //sortOrder: string = 'latestFirst';
-  public selectedAction = '';
+  selectedAction = '';
 
   @ViewChild(NgxRaceComponent)
   private _race: NgxRaceComponent;
@@ -73,6 +72,8 @@ export class GamePageComponent {
       gameStatus: this.gameStatus,
       points: this.points,
       timeSpent: this.timeSpent,
+      selectedAction: this.selectedAction,
+      gameplayHistory: this.gameplayHistory,
     });
   }
 
@@ -85,23 +86,24 @@ export class GamePageComponent {
 
   stopGame() {
     this.gameStatus = 'Paused';
-    this._race.actionStop();
-    this.stopTimer(); // Pause ngx-race
+    this._race.actionStop(); // Pause ngx-race
+    this.stopTimer();
     this.updateGameplayHistory('Game Paused');
   }
 
   resumeGame() {
     this.gameStatus = 'Started';
-    this._race.actionStart();
-    this.startTimer(); // Resume ngx-race
+    this._race.actionStart(); // Resume ngx-race
+    this.startTimer();
     this.updateGameplayHistory('Game Resumed');
   }
 
   endGame() {
     this.gameStatus = 'Ended';
-    this._race.actionStop();
-    // End ngx-race
+    this._race.actionStop(); // End ngx-race
     this.updateGameplayHistory('Game Ended');
+    this.stopTimer();
+    this.finishGame();
   }
   resetGame() {
     this.gameStatus = 'Ready';
@@ -109,6 +111,7 @@ export class GamePageComponent {
     this.stopTimer();
     this.timeSpent = 0;
     this.points = 0;
+    this.gameplayHistory = [];
   }
   turboOn() {
     this._race.actionTurboOn();
@@ -157,37 +160,5 @@ export class GamePageComponent {
 
   updateGameplayHistory(action: string) {
     this.gameplayHistory.push({ timeStamp: new Date(), action });
-    //this.filterGameplayHistory();
-    console.log(this.gameplayHistory);
   }
-
-  /*  filterGameplayHistory() {
-    if (this.selectedEventType === 'all') {
-      this.filterGameplayHistory = [...this.gameplayHistory];
-    } else {
-      this.filteredGameplayHistory = this.gameplayHistory.filter((event) =>
-        event.action
-          .toLowerCase()
-          .includes(this.selectedEventType.toLowerCase())
-      );
-    }
-
-    if (this.sortOrder === 'latestFirst') {
-      this.filteredGameplayHistory.sort(
-        (a, b) => b.timestamp.getTime() - a.timestamp.getTime()
-      );
-    } else {
-      this.filteredGameplayHistory.sort(
-        (a, b) => a.timestamp.getTime() - b.timestamp.getTime()
-      );
-    }
-  }
-
-  onRaceStateChange(state: NgxRaceModule) {
-    if (state === NgxRaceModule.ENDED) {
-      this.endGame();
-    }
-  }
-
-} */
 }

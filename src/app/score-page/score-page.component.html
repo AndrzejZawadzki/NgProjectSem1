@@ -3,7 +3,23 @@
   <p>Game Status: {{ gameStatus }}</p>
   <p>Points: {{ points }}</p>
   <p>Time Spent: {{ timeSpent | date : "mm:ss" }}</p>
-  <button (click)="exitGame()">Exit Game</button>
-  <br /><br />
-  <button (click)="startGame()">Play Again</button>
+
+  <!-- Display gameplay history -->
+  <div>
+    <h2>Gameplay History</h2>
+    <select [(ngModel)]="selectedAction">
+      <option value="">All</option>
+      <option>Game Started</option>
+      <option>Game Paused</option>
+      <option>Game Resumed</option>
+    </select>
+    <ul>
+      @for (event of gameplayHistory | filter:selectedAction; track event){
+      <li>{{ event.timeStamp | date : "medium" }} - {{ event.action }}</li>
+      }
+    </ul>
+    <button (click)="exitGame()">Exit Game</button>
+    <br /><br />
+    <button (click)="startGame()">Play Again</button>
+  </div>
 </div>
