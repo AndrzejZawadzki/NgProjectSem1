@@ -33,10 +33,25 @@
   >
     Left
   </button>
-  <button (click)="actionRight()">Right</button>
+  <button
+    [disabled]="gameStatus === 'Paused' || gameStatus === 'Ready'"
+    (click)="actionRight()"
+  >
+    Right
+  </button>
   <br />
-  <button (click)="turboOn()">Turbo ON</button>
-  <button (click)="turboOff()">Turbo OFF</button>
+  <button
+    [disabled]="gameStatus === 'Paused' || gameStatus === 'Ready'"
+    (click)="turboOn()"
+  >
+    Turbo ON
+  </button>
+  <button
+    [disabled]="gameStatus === 'Paused' || gameStatus === 'Ready'"
+    (click)="turboOff()"
+  >
+    Turbo OFF
+  </button>
 
   <!-- Display gameplay history -->
   <div>
