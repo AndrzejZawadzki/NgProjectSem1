@@ -8,13 +8,16 @@ import {
 import { NgxRaceModule, NgxRaceComponent } from 'ngx-race';
 import { CommonModule } from '@angular/common';
 import { timeout } from 'rxjs';
+import { FilterPipe } from '../filter.pipe';
+import { gameplayHistory } from '../models';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-game-page',
   templateUrl: './game-page.component.html',
   styleUrls: ['./game-page.component.scss'],
   standalone: true,
-  imports: [CommonModule, NgxRaceModule],
+  imports: [CommonModule, NgxRaceModule, FilterPipe, FormsModule],
 })
 export class GamePageComponent {
   @Input() playerName: string = '';
@@ -31,9 +34,10 @@ export class GamePageComponent {
   gameStatus: string = 'Ready';
   points: number = 0;
   timeSpent: number = 0;
-  gameplayHistory: { timestamp: Date; action: string }[] = [];
-  selectedEventType: string = 'all';
-  sortOrder: string = 'latestFirst';
+  gameplayHistory: gameplayHistory[] = [];
+  //selectedEventType: string = 'all';
+  //sortOrder: string = 'latestFirst';
+  public selectedAction = '';
 
   @ViewChild(NgxRaceComponent)
   private _race: NgxRaceComponent;
@@ -148,12 +152,13 @@ export class GamePageComponent {
     this.gameStatus = 'Ended';
     setTimeout(() => {
       this.finishGame();
-    }, 1000);
+    }, 5000);
   }
 
   updateGameplayHistory(action: string) {
-    this.gameplayHistory.push({ timestamp: new Date(), action });
+    this.gameplayHistory.push({ timeStamp: new Date(), action });
     //this.filterGameplayHistory();
+    console.log(this.gameplayHistory);
   }
 
   /*  filterGameplayHistory() {

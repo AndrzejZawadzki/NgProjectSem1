@@ -20,14 +20,19 @@
   <button *ngIf="gameStatus === 'Started'" (click)="stopGame()">
     Pause Game
   </button>
-  <button *ngIf="gameStatus === 'Paused'" (click)="startGame()">
+  <button *ngIf="gameStatus === 'Paused'" (click)="resumeGame()">
     Resume Game
   </button>
   <button *ngIf="gameStatus !== 'Ready'" (click)="endGame()">End Game</button>
 
   <button *ngIf="gameStatus !== 'Ready'" (click)="resetGame()">Reset</button>
   <br />
-  <button (click)="actionLeft()">Left</button>
+  <button
+    [disabled]="gameStatus === 'Paused' || gameStatus === 'Ready'"
+    (click)="actionLeft()"
+  >
+    Left
+  </button>
   <button (click)="actionRight()">Right</button>
   <br />
   <button (click)="turboOn()">Turbo ON</button>
@@ -36,22 +41,16 @@
   <!-- Display gameplay history -->
   <div>
     <h3>Gameplay History</h3>
-    <!-- <label>Filter by Event Type:</label>
-    <select [(ngModel)]="selectedEventType" (change)="filterGameplayHistory()">
-      <option value="all">All Events</option>
-      <option value="lineCleared">Line Cleared</option>
+    <select [(ngModel)]="selectedAction">
+      <option value="">All</option>
+      <option>Game Started</option>
+      <option>Game Paused</option>
+      <option>Game Resumed</option>
     </select>
-
-    <label>Sort by Timestamp:</label>
-    <select [(ngModel)]="sortOrder" (change)="filterGameplayHistory()">
-      <option value="latestFirst">Latest First</option>
-      <option value="oldestFirst">Oldest First</option>
-    </select>
- -->
     <ul>
-      <li *ngFor="let event of gameplayHistory">
-        {{ event.timestamp | date : "medium" }} - {{ event.action }}
-      </li>
+      @for (event of gameplayHistory | filter:selectedAction; track event){
+      <li>{{ event.timeStamp | date : "medium" }} - {{ event.action }}</li>
+      }
     </ul>
   </div>
 </div>
