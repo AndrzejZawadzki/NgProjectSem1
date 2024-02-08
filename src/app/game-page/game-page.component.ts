@@ -10,13 +10,14 @@ import { CommonModule } from '@angular/common';
 import { FilterPipe } from '../filter.pipe';
 import { GameplayHistory } from '../models';
 import { FormsModule } from '@angular/forms';
+import { SortPipe } from '../sort.pipe';
 
 @Component({
   selector: 'app-game-page',
   templateUrl: './game-page.component.html',
   styleUrls: ['./game-page.component.scss'],
   standalone: true,
-  imports: [CommonModule, NgxRaceModule, FilterPipe, FormsModule],
+  imports: [CommonModule, NgxRaceModule, FilterPipe, FormsModule, SortPipe],
 })
 export class GamePageComponent {
   @Input() playerName: string = '';
@@ -38,6 +39,7 @@ export class GamePageComponent {
   gameplayHistory: GameplayHistory[] = [];
   selectedAction = '';
   sortOrder = '';
+  selectedSortOrder: 'Newest first' | 'Oldest first' = 'Oldest first';
 
   @ViewChild(NgxRaceComponent)
   private _race: NgxRaceComponent;
