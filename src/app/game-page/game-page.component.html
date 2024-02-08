@@ -28,26 +28,42 @@
   <button *ngIf="gameStatus !== 'Ready'" (click)="resetGame()">Reset</button>
   <br />
   <button
-    [disabled]="gameStatus === 'Paused' || gameStatus === 'Ready'"
+    [disabled]="
+      gameStatus === 'Paused' ||
+      gameStatus === 'Ready' ||
+      gameStatus === 'Ended'
+    "
     (click)="actionLeft()"
   >
     Left
   </button>
   <button
-    [disabled]="gameStatus === 'Paused' || gameStatus === 'Ready'"
+    [disabled]="
+      gameStatus === 'Paused' ||
+      gameStatus === 'Ready' ||
+      gameStatus === 'Ended'
+    "
     (click)="actionRight()"
   >
     Right
   </button>
   <br />
   <button
-    [disabled]="gameStatus === 'Paused' || gameStatus === 'Ready'"
+    [disabled]="
+      gameStatus === 'Paused' ||
+      gameStatus === 'Ready' ||
+      gameStatus === 'Ended'
+    "
     (click)="turboOn()"
   >
     Turbo ON
   </button>
   <button
-    [disabled]="gameStatus === 'Paused' || gameStatus === 'Ready'"
+    [disabled]="
+      gameStatus === 'Paused' ||
+      gameStatus === 'Ready' ||
+      gameStatus === 'Ended'
+    "
     (click)="turboOff()"
   >
     Turbo OFF

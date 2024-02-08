@@ -8,7 +8,7 @@ import {
 import { NgxRaceModule, NgxRaceComponent } from 'ngx-race';
 import { CommonModule } from '@angular/common';
 import { FilterPipe } from '../filter.pipe';
-import { gameplayHistory } from '../models';
+import { GameplayHistory } from '../models';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -29,13 +29,13 @@ export class GamePageComponent {
     points: number;
     timeSpent: number;
     selectedAction: string;
-    gameplayHistory: gameplayHistory[];
+    gameplayHistory: GameplayHistory[];
   }>();
   timer: NodeJS.Timer;
   gameStatus: string = 'Ready';
   points: number = 0;
   timeSpent: number = 0;
-  gameplayHistory: gameplayHistory[] = [];
+  gameplayHistory: GameplayHistory[] = [];
   selectedAction = '';
   sortOrder = '';
 
@@ -156,7 +156,7 @@ export class GamePageComponent {
     this.gameStatus = 'Ended';
     setTimeout(() => {
       this.finishGame();
-    }, 5000);
+    }, 2000);
   }
 
   updateGameplayHistory(action: string) {

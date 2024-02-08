@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { gameplayHistory } from '../models';
+import { GameplayHistory } from '../models';
 import { FilterPipe } from '../filter.pipe';
 
 @Component({
@@ -18,7 +18,7 @@ export class ScorePageComponent {
   @Input() points = 0;
   @Input() timeSpent = 0;
   @Input() selectedAction = '';
-  @Input() gameplayHistory = [];
+  @Input() gameplayHistory: GameplayHistory[] = [];
   @Output() exitGameEvent = new EventEmitter<void>();
   @Output() startGameEvent = new EventEmitter<{
     playerName: string;

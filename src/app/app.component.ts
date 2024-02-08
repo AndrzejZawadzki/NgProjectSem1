@@ -3,7 +3,8 @@ import { IntroPageComponent } from './intro-page/intro-page.component';
 import { GamePageComponent } from './game-page/game-page.component';
 import { CommonModule } from '@angular/common';
 import { ScorePageComponent } from './score-page/score-page.component';
-import { gameplayHistory } from './models';
+import { GameplayHistory } from './models';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,7 @@ export class AppComponent {
   currentPoints: number = 0;
   currentTimeSpent: number;
   currentSelectedAction: string = '';
-  currentGameplayHistory: gameplayHistory[] = [];
+  currentGameplayHistory: GameplayHistory[] = [];
 
   startGame(event: { playerName: string; playerEmail: string }) {
     this.currentPlayerName = event.playerName;
@@ -42,7 +43,7 @@ export class AppComponent {
     points: number;
     timeSpent: number;
     selectedAction: string;
-    gameplayHistory: gameplayHistory[];
+    gameplayHistory: GameplayHistory[];
   }) {
     this.currentPage = 'scorePage';
     this.currentPlayerName = event.playerName;

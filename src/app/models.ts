@@ -1,4 +1,4 @@
-export interface gameplayHistory {
+export interface GameplayHistory {
   timeStamp: Date;
   action: string;
 }

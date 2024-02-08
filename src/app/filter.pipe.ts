@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { gameplayHistory } from './models';
+import { GameplayHistory } from './models';
 
 @Pipe({
   name: 'filter',
@@ -7,9 +7,9 @@ import { gameplayHistory } from './models';
 })
 export class FilterPipe implements PipeTransform {
   transform(
-    values: Array<gameplayHistory>,
+    values: Array<GameplayHistory>,
     action: string
-  ): Array<gameplayHistory> {
+  ): Array<GameplayHistory> {
     if (!action) {
       return values;
     }
