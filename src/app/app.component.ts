@@ -3,8 +3,8 @@ import { IntroPageComponent } from './intro-page/intro-page.component';
 import { GamePageComponent } from './game-page/game-page.component';
 import { CommonModule } from '@angular/common';
 import { ScorePageComponent } from './score-page/score-page.component';
+import { gameplayHistory } from './models';
 
-type Player = string;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,14 +18,14 @@ type Player = string;
   standalone: true,
 })
 export class AppComponent {
-  currentPage: 'introPage' | 'gamePage' | 'scorePage' | null = 'gamePage';
+  currentPage: 'introPage' | 'gamePage' | 'scorePage' = 'gamePage';
   currentPlayerName: string = '';
   currentPlayerEmail: string = '';
   currentGameStatus: string = '';
   currentPoints: number = 0;
   currentTimeSpent: number;
-
-  gameplayHistory: { userName: string; timestamp: Date; action: string }[] = [];
+  currentSelectedAction: string = '';
+  currentGameplayHistory: gameplayHistory[] = [];
 
   startGame(event: { playerName: string; playerEmail: string }) {
     this.currentPlayerName = event.playerName;
@@ -41,6 +41,8 @@ export class AppComponent {
     gameStatus: string;
     points: number;
     timeSpent: number;
+    selectedAction: string;
+    gameplayHistory: gameplayHistory[];
   }) {
     this.currentPage = 'scorePage';
     this.currentPlayerName = event.playerName;
@@ -48,5 +50,7 @@ export class AppComponent {
     this.currentGameStatus = event.gameStatus;
     this.currentPoints = event.points;
     this.currentTimeSpent = event.timeSpent;
+    this.currentSelectedAction = event.selectedAction;
+    this.currentGameplayHistory = event.gameplayHistory;
   }
 }

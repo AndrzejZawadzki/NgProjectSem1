@@ -37,6 +37,7 @@ export class GamePageComponent {
   timeSpent: number = 0;
   gameplayHistory: gameplayHistory[] = [];
   selectedAction = '';
+  sortOrder = '';
 
   @ViewChild(NgxRaceComponent)
   private _race: NgxRaceComponent;
