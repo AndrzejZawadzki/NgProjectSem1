@@ -31,6 +31,7 @@ export class GamePageComponent {
     timeSpent: number;
     selectedAction: string;
     gameplayHistory: GameplayHistory[];
+    selectedSortOrder: string;
   }>();
   timer: NodeJS.Timer;
   gameStatus: string = 'Ready';
@@ -77,6 +78,7 @@ export class GamePageComponent {
       timeSpent: this.timeSpent,
       selectedAction: this.selectedAction,
       gameplayHistory: this.gameplayHistory,
+      selectedSortOrder: this.selectedSortOrder,
     });
   }
 

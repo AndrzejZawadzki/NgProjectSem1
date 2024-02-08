@@ -13,6 +13,10 @@
       <option>Game Paused</option>
       <option>Game Resumed</option>
     </select>
+    <select [(ngModel)]="selectedSortOrder">
+      <option value="Newest first">Newest first</option>
+      <option value="Oldest first">Oldest first</option>
+    </select>
     <ul>
       @for (event of gameplayHistory | filter:selectedAction; track event){
       <li>{{ event.timeStamp | date : "medium" }} - {{ event.action }}</li>

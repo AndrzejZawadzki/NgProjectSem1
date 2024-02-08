@@ -27,6 +27,7 @@ export class AppComponent {
   currentTimeSpent: number;
   currentSelectedAction: string = '';
   currentGameplayHistory: GameplayHistory[] = [];
+  currentSelectedSortOrder: string;
 
   startGame(event: { playerName: string; playerEmail: string }) {
     this.currentPlayerName = event.playerName;
@@ -43,6 +44,7 @@ export class AppComponent {
     points: number;
     timeSpent: number;
     selectedAction: string;
+    selectedSortOrder: string;
     gameplayHistory: GameplayHistory[];
   }) {
     this.currentPage = 'scorePage';
@@ -53,5 +55,6 @@ export class AppComponent {
     this.currentTimeSpent = event.timeSpent;
     this.currentSelectedAction = event.selectedAction;
     this.currentGameplayHistory = event.gameplayHistory;
+    this.currentSelectedSortOrder = event.selectedSortOrder;
   }
 }
