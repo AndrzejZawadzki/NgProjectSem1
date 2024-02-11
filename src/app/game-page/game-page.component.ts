@@ -22,6 +22,7 @@ import { SortPipe } from '../sort.pipe';
 export class GamePageComponent {
   @Input() playerName: string = '';
   @Input() playerEmail: string = '';
+  @Input() gameplayHistory: GameplayHistory[] = [];
   @Output() exitGameEvent = new EventEmitter<void>();
   @Output() finishGameEvent = new EventEmitter<{
     playerName: string;
@@ -37,7 +38,7 @@ export class GamePageComponent {
   gameStatus: string = 'Ready';
   points: number = 0;
   timeSpent: number = 0;
-  gameplayHistory: GameplayHistory[] = [];
+  //gameplayHistory: GameplayHistory[] = [];
   selectedAction = '';
   sortOrder = '';
   selectedSortOrder: 'Newest first' | 'Oldest first' = 'Oldest first';
@@ -164,6 +165,9 @@ export class GamePageComponent {
   }
 
   updateGameplayHistory(action: string) {
-    this.gameplayHistory.push({ timeStamp: new Date(), action });
+    this.gameplayHistory = [
+      ...this.gameplayHistory,
+      { timeStamp: new Date(), action },
+    ];
   }
 }

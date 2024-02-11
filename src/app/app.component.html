@@ -8,6 +8,7 @@
     [playerName]="currentPlayerName"
     (exitGameEvent)="exitGame()"
     (finishGameEvent)="finishGame($event)"
+    [gameplayHistory]="currentGameplayHistory"
   ></app-game-page>
   <app-score-page
     *ngIf="currentPage === 'scorePage'"

@@ -4,7 +4,6 @@ import { GamePageComponent } from './game-page/game-page.component';
 import { CommonModule } from '@angular/common';
 import { ScorePageComponent } from './score-page/score-page.component';
 import { GameplayHistory } from './models';
-import { Action } from 'rxjs/internal/scheduler/Action';
 
 @Component({
   selector: 'app-root',
@@ -33,6 +32,7 @@ export class AppComponent {
     this.currentPlayerName = event.playerName;
     this.currentPage = 'gamePage';
     this.currentPlayerEmail = event.playerEmail;
+    this.currentGameplayHistory = [];
   }
   exitGame() {
     this.currentPage = 'introPage';
