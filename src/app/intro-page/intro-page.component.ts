@@ -16,21 +16,7 @@ export class IntroPageComponent {
     playerEmail: string;
   }>();
 
-  playerName: string = '';
-  playerEmail: string = '';
-
-  formIsValid(): boolean {
-    return this.playerName.trim() !== '' && this.playerEmail.trim() !== '';
-  }
-
-  startGame() {
-    if (this.formIsValid()) {
-      this.startGameEvent.emit({
-        playerName: this.playerName,
-        playerEmail: this.playerEmail,
-      });
-    } else {
-      alert('Please fill out the form correctly!');
-    }
+  startGame(data: { playerName: string; playerEmail: string }) {
+    this.startGameEvent.emit(data);
   }
 }

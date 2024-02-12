@@ -13,7 +13,7 @@ export class SortPipe implements PipeTransform {
     if (!sortOrder) {
       return value;
     }
-    if (sortOrder === 'Newest first') {
+    if (sortOrder === 'Oldest first') {
       return value
         .slice()
         .sort((a, b) => a.timeStamp.getTime() - b.timeStamp.getTime());

@@ -38,7 +38,6 @@ export class GamePageComponent {
   gameStatus: string = 'Ready';
   points: number = 0;
   timeSpent: number = 0;
-  //gameplayHistory: GameplayHistory[] = [];
   selectedAction = '';
   sortOrder = '';
   selectedSortOrder: 'Newest first' | 'Oldest first' = 'Oldest first';

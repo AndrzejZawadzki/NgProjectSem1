@@ -18,7 +18,7 @@ import { GameplayHistory } from './models';
   standalone: true,
 })
 export class AppComponent {
-  currentPage: 'introPage' | 'gamePage' | 'scorePage' = 'gamePage';
+  currentPage: 'introPage' | 'gamePage' | 'scorePage' = 'introPage';
   currentPlayerName: string = '';
   currentPlayerEmail: string = '';
   currentGameStatus: string = '';

@@ -19,7 +19,7 @@ export class ScorePageComponent {
   @Input() points = 0;
   @Input() timeSpent = 0;
   @Input() selectedAction = '';
-  @Input() selectedSortOrder = '';
+  @Input() selectedSortOrder: 'Newest first' | 'Oldest first' = 'Oldest first';
   @Input() gameplayHistory: GameplayHistory[] = [];
   @Output() exitGameEvent = new EventEmitter<void>();
   @Output() startGameEvent = new EventEmitter<{

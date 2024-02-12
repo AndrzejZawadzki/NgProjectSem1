@@ -18,7 +18,8 @@
       <option value="Oldest first">Oldest first</option>
     </select>
     <ul>
-      @for (event of gameplayHistory | filter:selectedAction; track event){
+      @for (event of gameplayHistory | filter:selectedAction |
+      sort:selectedSortOrder; track event){
       <li>{{ event.timeStamp | date : "medium" }} - {{ event.action }}</li>
       }
     </ul>
