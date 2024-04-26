@@ -53,7 +53,6 @@ export class AppComponent {
     this.currentGameStatus = event.gameStatus;
     this.currentPoints = event.points;
     this.currentTimeSpent = event.timeSpent;
-    this.currentSelectedAction = event.selectedAction;
     this.currentGameplayHistory = event.gameplayHistory;
     this.currentSelectedSortOrder = event.selectedSortOrder;
   }
