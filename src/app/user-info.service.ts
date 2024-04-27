@@ -1,0 +1,18 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UserInfoService {
+  private _userInfoVerified: boolean = false;
+
+  public get isVerified() {
+    return this._userInfoVerified;
+  }
+  public verifyUser(): void {
+    this._userInfoVerified = true;
+  }
+  public reset(): void {
+    this._userInfoVerified = false;
+  }
+}

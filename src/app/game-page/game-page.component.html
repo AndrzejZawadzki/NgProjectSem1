@@ -3,9 +3,8 @@
   <p>Game Status: {{ gameStatus }}</p>
   <p>Points: {{ points }}</p>
   <p>Time Spent: {{ timeSpent | date : "mm:ss" }}</p>
-
-  <button (click)="exitGame()">Exit Game</button>
-  <button (click)="finishGame()">Finish</button>
+  <button [routerLink]="['/intro-page']">Quit game</button>
+  <button [routerLink]="['/score-page']">Finish</button>
 
   <ngx-race
     #game

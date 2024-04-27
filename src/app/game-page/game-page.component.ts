@@ -11,15 +11,30 @@ import { FilterPipe } from '../filter.pipe';
 import { GameplayHistory } from '../models';
 import { FormsModule } from '@angular/forms';
 import { SortPipe } from '../sort.pipe';
+import { Router, RouterLink } from '@angular/router';
+import { UserInfoService } from '../user-info.service';
 
 @Component({
   selector: 'app-game-page',
   templateUrl: './game-page.component.html',
   styleUrls: ['./game-page.component.scss'],
   standalone: true,
-  imports: [CommonModule, NgxRaceModule, FilterPipe, FormsModule, SortPipe],
+  imports: [
+    CommonModule,
+    NgxRaceModule,
+    FilterPipe,
+    FormsModule,
+    SortPipe,
+    RouterLink,
+  ],
 })
 export class GamePageComponent {
+  constructor(private _userInfo: UserInfoService, private _router: Router) {
+    if (this._userInfo.isVerified === false) {
+      alert('Please enter your name and email');
+      this._router.navigate(['/intro-page']);
+    }
+  }
   @Input() playerName: string = '';
   @Input() playerEmail: string = '';
   @Input() gameplayHistory: GameplayHistory[] = [];
