@@ -26,8 +26,8 @@
       <li>{{ event.timeStamp | date : "medium" }} - {{ event.action }}</li>
       }
     </ul>
-    <button (click)="exitGame()">Exit Game</button>
+    <button [routerLink]="['/intro-page']">Exit Game</button>
     <br /><br />
-    <button (click)="startGame()">Play Again</button>
+    <button [routerLink]="['/game-page']">Play Again</button>
   </div>
 </div>

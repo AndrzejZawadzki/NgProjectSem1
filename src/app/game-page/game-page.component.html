@@ -22,7 +22,9 @@
   <button *ngIf="gameStatus === 'Paused'" (click)="resumeGame()">
     Resume Game
   </button>
-  <button *ngIf="gameStatus !== 'Ready'" (click)="endGame()">End Game</button>
+  <button *ngIf="gameStatus !== 'Ready'" (click)="endGame()">
+    Finish Game
+  </button>
 
   <button *ngIf="gameStatus !== 'Ready'" (click)="resetGame()">Reset</button>
   <br />
