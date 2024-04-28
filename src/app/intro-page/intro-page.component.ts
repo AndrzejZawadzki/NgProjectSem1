@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { EventEmitter, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  NgForm,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserInfoService } from '../user-info.service';
 
@@ -13,18 +18,26 @@ import { UserInfoService } from '../user-info.service';
   styleUrl: './intro-page.component.scss',
 })
 export class IntroPageComponent {
-  // @Output() startGameEvent = new EventEmitter<{
-  //   playerName: string;
-  //   playerEmail: string;
-  // }>();
-  public constructor(
-    private _router: Router,
-    private _userInfo: UserInfoService
-  ) {}
+  introForm: FormGroup;
+  @ViewChild('form') form: NgForm;
+  playerName: string;
+  playerEmail: string;
 
-  startGame(data: { playerName: string; playerEmail: string }) {
-    // this.startGameEvent.emit(data);
-    this._userInfo.verifyUser();
+  constructor(
+    private formBuilder: FormBuilder,
+    private _router: Router,
+    private userInfoService: UserInfoService
+  ) {
+    this.introForm = this.formBuilder.group({
+      playerName: ['', [Validators.required, Validators.minLength(3)]],
+      playerEmail: ['', [Validators.required, Validators.email]],
+    });
+  }
+
+  setPlayerData(): void {
+    this.userInfoService.verifyUser();
+    this.userInfoService.setPlayerData(this.playerName, this.playerEmail);
+    console.log('userInfoService: ', this.userInfoService);
     this._router.navigate(['/game-page']);
   }
 }

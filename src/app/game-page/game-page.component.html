@@ -1,6 +1,6 @@
 <div>
   <h2>Welcome, {{ playerName }}!</h2>
-  <p>Game Status: {{ gameStatus }}</p>
+  <!-- <p>Game Status: {{ gameStatus }}</p>
   <p>Points: {{ points }}</p>
   <p>Time Spent: {{ timeSpent | date : "mm:ss" }}</p>
   <button [routerLink]="['/intro-page']">Quit game</button>
@@ -69,9 +69,9 @@
   >
     Turbo OFF
   </button>
-
+ -->
   <!-- Display gameplay history -->
-  <div>
+  <!-- <div>
     <h3>Gameplay History</h3>
     <select [(ngModel)]="selectedAction">
       <option value="">All</option>
@@ -92,5 +92,5 @@
       <li>{{ event.timeStamp | date : "medium" }} - {{ event.action }}</li>
       }
     </ul>
-  </div>
+  </div> -->
 </div>

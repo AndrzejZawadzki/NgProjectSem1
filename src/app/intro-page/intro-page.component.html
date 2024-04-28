@@ -3,31 +3,35 @@
   This is a fun and exciting game.<br />
   Fill out the form below to get started!
 </h3>
-<form #form="ngForm" (submit)="startGame(form.value)">
-  Name
+<form #form (ngSubmit)="setPlayerData()">
+  <label for="playerName">Name: </label>
   <input
-    name="playerName"
-    #nameModel="ngModel"
+    name="name"
+    type="text"
+    id="playerName"
+    [(ngModel)]="playerName"
     required
     minlength="3"
-    ngModel
     placeholder="Enter player name"
   />
-  <div *ngIf="nameModel.touched && nameModel.invalid">
+
+  <!-- <div *ngIf="playerName.touched && playerName.invalid">
     Name must be at least 3 chars long
-  </div>
+  </div> -->
   <br />
-  Email
+  <label>Email</label>
   <input
+    type="email"
+    id="playerEmail"
     name="playerEmail"
     required
     pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
     type="email"
     placeholder="Enter player email"
-    ngModel
+    [(ngModel)]="playerEmail"
   />
   <br />
   <br />
   <br />
-  <button [disabled]="form.invalid">Start Game</button>
+  <button type="submit">Start game</button>
 </form>
