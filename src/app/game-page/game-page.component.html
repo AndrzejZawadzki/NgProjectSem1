@@ -1,96 +1,96 @@
 <div>
   <h2>Welcome, {{ playerName }}!</h2>
-  <!-- <p>Game Status: {{ gameStatus }}</p>
-  <p>Points: {{ points }}</p>
-  <p>Time Spent: {{ timeSpent | date : "mm:ss" }}</p>
+  <!-- <p>Game Status: {{ gameStatus }}</p> -->
+  <!-- <p>Points: {{ points }}</p> -->
+  <!-- <p>Time Spent: {{ timeSpent | date : "mm:ss" }}</p> -->
   <button [routerLink]="['/intro-page']">Quit game</button>
   <button [routerLink]="['/score-page']">Finish</button>
 
-  <ngx-race
-    #game
-    (carOvertaken)="grantPoints()"
-    (gameOver)="gameOver()"
-  ></ngx-race>
-  <br />
-  <br />
-  <button *ngIf="gameStatus === 'Ready'" (click)="startGame()">
-    Start Game
-  </button>
-  <button *ngIf="gameStatus === 'Started'" (click)="stopGame()">
-    Pause Game
-  </button>
-  <button *ngIf="gameStatus === 'Paused'" (click)="resumeGame()">
-    Resume Game
-  </button>
-  <button *ngIf="gameStatus !== 'Ready'" (click)="endGame()">
-    Finish Game
-  </button>
+  <ngx-race>#game</ngx-race>
 
-  <button *ngIf="gameStatus !== 'Ready'" (click)="resetGame()">Reset</button>
+  <!-- (carOvertaken)="grantPoints()" -->
+  <!-- (gameOver)="gameOver()" -->
+  <!-- ></ngx-race> -->
   <br />
-  <button
-    [disabled]="
-      gameStatus === 'Paused' ||
-      gameStatus === 'Ready' ||
-      gameStatus === 'Ended'
-    "
-    (click)="actionLeft()"
-  >
-    Left
-  </button>
-  <button
-    [disabled]="
-      gameStatus === 'Paused' ||
-      gameStatus === 'Ready' ||
-      gameStatus === 'Ended'
-    "
-    (click)="actionRight()"
-  >
-    Right
-  </button>
   <br />
-  <button
-    [disabled]="
-      gameStatus === 'Paused' ||
-      gameStatus === 'Ready' ||
-      gameStatus === 'Ended'
-    "
-    (click)="turboOn()"
-  >
-    Turbo ON
-  </button>
-  <button
-    [disabled]="
-      gameStatus === 'Paused' ||
-      gameStatus === 'Ready' ||
-      gameStatus === 'Ended'
-    "
-    (click)="turboOff()"
-  >
-    Turbo OFF
-  </button>
- -->
+  <!-- <button *ngIf="gameStatus === 'Ready'" (click)="startGame()"> -->
+  Start Game
+  <!-- </button> -->
+  <!-- <button *ngIf="gameStatus === 'Started'" (click)="stopGame()"> -->
+  <!-- Pause Game -->
+  <!-- </button> -->
+  <!-- <button *ngIf="gameStatus === 'Paused'" (click)="resumeGame()"> -->
+  <!-- Resume Game -->
+  <!-- </button> -->
+  <!-- <button *ngIf="gameStatus !== 'Ready'" (click)="endGame()"> -->
+  <!-- Finish Game -->
+  <!-- </button> -->
+
+  <!-- <button *ngIf="gameStatus !== 'Ready'" (click)="resetGame()">Reset</button> -->
+  <br />
+  <!-- <button -->
+  <!-- [disabled]=" -->
+  <!-- gameStatus === 'Paused' || -->
+  <!-- gameStatus === 'Ready' || -->
+  <!-- gameStatus === 'Ended' -->
+  <!-- " -->
+  <!-- (click)="actionLeft()" -->
+  <!-- > -->
+  <!-- Left -->
+  <!-- </button> -->
+  <!-- <button -->
+  <!-- [disabled]=" -->
+  <!-- gameStatus === 'Paused' || -->
+  <!-- gameStatus === 'Ready' || -->
+  <!-- gameStatus === 'Ended' -->
+  <!-- " -->
+  <!-- (click)="actionRight()" -->
+  <!-- > -->
+  <!-- Right -->
+  <!-- </button> -->
+  <!-- <br /> -->
+  <!-- <button -->
+  <!-- [disabled]=" -->
+  <!-- gameStatus === 'Paused' || -->
+  <!-- gameStatus === 'Ready' || -->
+  <!-- gameStatus === 'Ended' -->
+  <!-- " -->
+  <!-- (click)="turboOn()" -->
+  <!-- > -->
+  <!-- Turbo ON -->
+  <!-- </button> -->
+  <!-- <button -->
+  <!-- [disabled]=" -->
+  <!-- gameStatus === 'Paused' || -->
+  <!-- gameStatus === 'Ready' || -->
+  <!-- gameStatus === 'Ended' -->
+  <!-- " -->
+  <!-- (click)="turboOff()" -->
+  <!-- > -->
+  <!-- Turbo OFF -->
+  <!-- </button> -->
+
   <!-- Display gameplay history -->
-  <!-- <div>
-    <h3>Gameplay History</h3>
-    <select [(ngModel)]="selectedAction">
-      <option value="">All</option>
-      <option>Game Started</option>
-      <option>Game Paused</option>
-      <option>Game Resumed</option>
-      <option>Car overtaken</option>
-      <option>Turbo On</option>
-      <option>Turbo Off</option>
-    </select>
-    <select [(ngModel)]="selectedSortOrder">
-      <option value="Newest first">Newest first</option>
-      <option value="Oldest first">Oldest first</option>
-    </select>
-    <ul>
-      @for (event of gameplayHistory | filter:selectedAction |
-      sort:selectedSortOrder; track event){
-      <li>{{ event.timeStamp | date : "medium" }} - {{ event.action }}</li>
-      }
-    </ul>
-  </div> -->
+  <!-- <div> -->
+  <!-- <h3>Gameplay History</h3> -->
+  <!-- <select [(ngModel)]="selectedAction"> -->
+  <!-- <option value="">All</option> -->
+  <!-- <option>Game Started</option> -->
+  <!-- <option>Game Paused</option> -->
+  <!-- <option>Game Resumed</option> -->
+  <!-- <option>Car overtaken</option> -->
+  <!-- <option>Turbo On</option> -->
+  <!-- <option>Turbo Off</option> -->
+  <!-- </select> -->
+  <!-- <select [(ngModel)]="selectedSortOrder"> -->
+  <!-- <option value="Newest first">Newest first</option> -->
+  <!-- <option value="Oldest first">Oldest first</option> -->
+  <!-- </select> -->
+  <!-- <ul> -->
+  <!-- @for (event of gameplayHistory | filter:selectedAction | -->
+  <!-- sort:selectedSortOrder; track event){ -->
+  <!-- <li>{{ event.timeStamp | date : "medium" }} - {{ event.action }}</li> -->
+  <!-- } -->
+  <!-- </ul> -->
+  <!-- </div> -->
 </div>

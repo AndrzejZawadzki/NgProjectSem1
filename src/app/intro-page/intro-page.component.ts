@@ -37,7 +37,6 @@ export class IntroPageComponent {
   setPlayerData(): void {
     this.userInfoService.verifyUser();
     this.userInfoService.setPlayerData(this.playerName, this.playerEmail);
-    console.log('userInfoService: ', this.userInfoService);
     this._router.navigate(['/game-page']);
   }
 }

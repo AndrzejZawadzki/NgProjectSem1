@@ -1,17 +1,18 @@
 import {
   Component,
-  // Input,
-  // Output,
-  // EventEmitter,
-  // ViewChild,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
   OnInit,
+  ViewChildren,
 } from '@angular/core';
-// import { NgxRaceModule, NgxRaceComponent } from 'ngx-race';
-// import { CommonModule } from '@angular/common';
-// import { FilterPipe } from '../filter.pipe';
-// import { GameplayHistory } from '../models';
-// import { FormsModule } from '@angular/forms';
-// import { SortPipe } from '../sort.pipe';
+import { NgxRaceModule, NgxRaceComponent } from 'ngx-race';
+import { CommonModule } from '@angular/common';
+import { FilterPipe } from '../filter.pipe';
+import { GameplayHistory } from '../models';
+import { FormsModule } from '@angular/forms';
+import { SortPipe } from '../sort.pipe';
 import { Router, RouterLink } from '@angular/router';
 import { UserInfoService } from '../user-info.service';
 
@@ -21,11 +22,11 @@ import { UserInfoService } from '../user-info.service';
   styleUrls: ['./game-page.component.scss'],
   standalone: true,
   imports: [
-    // CommonModule,
-    // NgxRaceModule,
-    // FilterPipe,
-    // FormsModule,
-    // SortPipe,
+    CommonModule,
+    NgxRaceModule,
+    FilterPipe,
+    FormsModule,
+    SortPipe,
     RouterLink,
   ],
 })
@@ -33,22 +34,45 @@ export class GamePageComponent {
   playerName: string;
   playerEmail: string;
 
+  @ViewChildren(NgxRaceComponent)
+  private _race: NgxRaceComponent;
+
+  public onTurboOnButtonPressed() {
+    this._race.actionTurboOn();
+  }
+  public onTurboOffButtonPressed() {
+    this._race.actionTurboOff();
+  }
+  public onActionStartButtonPressed() {
+    this._race.actionStart();
+  }
+  public onActionStopButtonPressed() {
+    this._race.actionStop();
+  }
+  public onActionResetButtonPressed() {
+    this._race.actionReset();
+  }
+  public onActionLeftButtonPressed() {
+    this._race.actionLeft();
+  }
+  public onActionRightButtonPressed() {
+    this._race.actionRight();
+  }
+
   constructor(
-    private userInfoService: UserInfoService //  private _router: Router
+    private userInfoService: UserInfoService,
+    private _router: Router
   ) {
-    // if (this.userInfoService.isVerified === false) {
-    //   alert('Please enter your name and email');
-    //   this._router.navigate(['/intro-page']);
-    // }
+    if (this.userInfoService.isVerified === false) {
+      alert('Please enter your name and email');
+      this._router.navigate(['/intro-page']);
+    }
 
     this.playerName = this.userInfoService.getPlayerName();
     this.playerEmail = this.userInfoService.getPlayerEmail();
-
-    console.log('Playername: ', this.playerName);
   }
 }
-// // @Input() playerName: string = '';
-// // @Input() playerEmail: string = '';
+
 // @Input() gameplayHistory: GameplayHistory[] = [];
 // @Output() exitGameEvent = new EventEmitter<void>();
 // @Output() finishGameEvent = new EventEmitter<{
