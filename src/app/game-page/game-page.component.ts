@@ -33,6 +33,8 @@ import { UserInfoService } from '../user-info.service';
 export class GamePageComponent {
   playerName: string;
   playerEmail: string;
+  gameStatus: string;
+  points: number;
 
   @ViewChildren(NgxRaceComponent)
   private _race: NgxRaceComponent;
@@ -69,8 +71,19 @@ export class GamePageComponent {
     }
 
     this.playerName = this.userInfoService.getPlayerName();
+
     this.playerEmail = this.userInfoService.getPlayerEmail();
+
+    this.gameStatus = this.userInfoService.getGameStatus();
+
+    this.points = this.userInfoService.getPoints();
   }
+  // setNewGameDataBeforeStart(): void {
+  //   this.userInfoService.setNewGameDataBeforeStart(
+  //     this.gameStatus,
+  //     this.points
+  //   );
+  // }
 }
 
 // @Input() gameplayHistory: GameplayHistory[] = [];
@@ -86,36 +99,12 @@ export class GamePageComponent {
 //   selectedSortOrder: string;
 // }>();
 // timer: NodeJS.Timer;
-// gameStatus: string = 'Ready';
+
 // points: number = 0;
 // timeSpent: number = 0;
 // selectedAction = '';
 // sortOrder = '';
 // selectedSortOrder: 'Newest first' | 'Oldest first' = 'Oldest first';
-
-// @ViewChild(NgxRaceComponent)
-// private _race: NgxRaceComponent;
-// public onTurboOnButtonPressed() {
-//   this._race.actionTurboOn();
-// }
-// public onTurboOffButtonPressed() {
-//   this._race.actionTurboOff();
-// }
-// public onActionStartButtonPressed() {
-//   this._race.actionStart();
-// }
-// public onActionStopButtonPressed() {
-//   this._race.actionStop();
-// }
-// public onActionResetButtonPressed() {
-//   this._race.actionReset();
-// }
-// public onActionLeftButtonPressed() {
-//   this._race.actionLeft();
-// }
-// public onActionRightButtonPressed() {
-//   this._race.actionRight();
-// }
 
 // exitGame() {
 //   this.exitGameEvent.emit();
