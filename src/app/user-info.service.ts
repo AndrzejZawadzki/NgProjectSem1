@@ -9,6 +9,7 @@ export class UserInfoService {
   private _playerEmail: string;
   private _gameStatus: string = 'Ready';
   private _points: number = 0;
+  private _timeSpent: number = 0;
 
   public get isVerified() {
     return this._userInfoVerified;
@@ -46,5 +47,9 @@ export class UserInfoService {
 
   getPoints(): number {
     return this._points;
+  }
+
+  getTimeSpent(): number {
+    return this._timeSpent;
   }
 }

@@ -35,6 +35,7 @@ export class GamePageComponent {
   playerEmail: string;
   gameStatus: string;
   points: number;
+  timeSpent: number;
 
   @ViewChildren(NgxRaceComponent)
   private _race: NgxRaceComponent;
@@ -77,6 +78,8 @@ export class GamePageComponent {
     this.gameStatus = this.userInfoService.getGameStatus();
 
     this.points = this.userInfoService.getPoints();
+
+    this.timeSpent = this.userInfoService.getTimeSpent();
   }
   // setNewGameDataBeforeStart(): void {
   //   this.userInfoService.setNewGameDataBeforeStart(

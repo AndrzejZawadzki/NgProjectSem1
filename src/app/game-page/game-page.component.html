@@ -2,7 +2,7 @@
   <h2>Welcome, {{ playerName }}!</h2>
   <p>Game Status: {{ gameStatus }}</p>
   <p>Points: {{ points }}</p>
-  <!-- <p>Time Spent: {{ timeSpent | date : "mm:ss" }}</p> -->
+  <p>Time Spent: {{ timeSpent | date : "mm:ss" }}</p>
   <button [routerLink]="['/intro-page']">Quit game</button>
   <button [routerLink]="['/score-page']">Finish</button>
 
