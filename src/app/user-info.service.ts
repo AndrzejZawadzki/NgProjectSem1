@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChildren } from '@angular/core';
+import { GameplayHistory } from './models';
+// import { NgxRaceComponent } from 'ngx-race';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +12,9 @@ export class UserInfoService {
   private _gameStatus: string = 'Ready';
   private _points: number = 0;
   private _timeSpent: number = 0;
+  private _gameplayHistory: GameplayHistory[] = [];
+
+  // private _race: NgxRaceComponent;
 
   public get isVerified() {
     return this._userInfoVerified;
@@ -22,6 +27,10 @@ export class UserInfoService {
   }
 
   constructor() {}
+
+  // setRace(race: NgxRaceComponent): void {
+  //   this._race = race;
+  // }
 
   setPlayerData(name: string, email: string): void {
     this._playerName = name;
@@ -52,4 +61,19 @@ export class UserInfoService {
   getTimeSpent(): number {
     return this._timeSpent;
   }
+
+  getGameplayHistory(action: string) {
+    return (this._gameplayHistory = [
+      ...this._gameplayHistory,
+      { timeStamp: new Date(), action },
+    ]);
+  }
+
+  // startGame(): void {
+  //   this._gameStatus = 'Started';
+  //   this._race.actionStart(); // Start ngx-race
+  //   this.updateGameplayHistory('Game Started');
+  //   this.startTimer(); // Start tracking time
+  //   }
+  // }
 }
