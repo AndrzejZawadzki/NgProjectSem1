@@ -33,12 +33,7 @@ export class GamePageComponent {
 
   @ViewChild(NgxRaceComponent)
   private _race: NgxRaceComponent;
-  startGame(): void {
-    this.gameStatus = 'Started';
-    this._race.actionStart(); // Start ngx-race
-    this.updateGameplayHistory('Game Started');
-    this.startTimer(); // Start tracking time
-  }
+
   public onTurboOnButtonPressed() {
     this._race.actionTurboOn();
   }
@@ -95,10 +90,6 @@ export class GamePageComponent {
     );
   }
 
-  // startGame(): void {
-  //   this.userInfoService.startGame();
-  // }
-
   // @Input() gameplayHistory: GameplayHistory[] = [];
   // @Output() exitGameEvent = new EventEmitter<void>();
   // @Output() finishGameEvent = new EventEmitter<{
@@ -114,6 +105,20 @@ export class GamePageComponent {
   // selectedAction = '';
   // sortOrder = '';
   // selectedSortOrder: 'Newest first' | 'Oldest first' = 'Oldest first';
+
+  startGame(): void {
+    this.gameStatus = 'Started';
+    this._race.actionStart(); // Start ngx-race
+    this.updateGameplayHistory('Game Started');
+    this.startTimer(); // Start tracking time
+  }
+
+  stopGame() {
+    this.gameStatus = 'Paused';
+    this._race.actionStop(); // Pause ngx-race
+    this.stopTimer();
+    this.updateGameplayHistory('Game Paused');
+  }
 
   // exitGame() {
   //   this.exitGameEvent.emit();
@@ -131,42 +136,29 @@ export class GamePageComponent {
   //   });
   // }
 
-  // startGame() {
-  //   this.gameStatus = 'Started';
-  //   this._race.actionStart(); // Start ngx-race
-  //   this.updateGameplayHistory('Game Started');
-  //   this.startTimer(); // Start tracking time
-  // }
+  resumeGame() {
+    this.gameStatus = 'Started';
+    this._race.actionStart(); // Resume ngx-race
+    this.startTimer();
+    this.updateGameplayHistory('Game Resumed');
+  }
 
-  // stopGame() {
-  //   this.gameStatus = 'Paused';
-  //   this._race.actionStop(); // Pause ngx-race
-  //   this.stopTimer();
-  //   this.updateGameplayHistory('Game Paused');
-  // }
+  endGame() {
+    this.gameStatus = 'Ended';
+    this._race.actionStop(); // End ngx-race
+    this.updateGameplayHistory('Game Ended');
+    this.stopTimer();
+    //this.finishGame();
+  }
 
-  // resumeGame() {
-  //   this.gameStatus = 'Started';
-  //   this._race.actionStart(); // Resume ngx-race
-  //   this.startTimer();
-  //   this.updateGameplayHistory('Game Resumed');
-  // }
-
-  // endGame() {
-  //   this.gameStatus = 'Ended';
-  //   this._race.actionStop(); // End ngx-race
-  //   this.updateGameplayHistory('Game Ended');
-  //   this.stopTimer();
-  //   this.finishGame();
-  // }
-  // resetGame() {
-  //   this.gameStatus = 'Ready';
-  //   this._race.actionReset();
-  //   this.stopTimer();
-  //   this.timeSpent = 0;
-  //   this.points = 0;
-  //   this.gameplayHistory = [];
-  // }
+  resetGame() {
+    this.gameStatus = 'Ready';
+    this._race.actionReset();
+    this.stopTimer();
+    this.timeSpent = 0;
+    this.points = 0;
+    this.gameplayHistory = [];
+  }
   // turboOn() {
   //   this._race.actionTurboOn();
   //   this.updateGameplayHistory('Turbo On');
@@ -182,11 +174,11 @@ export class GamePageComponent {
   //   this.updateGameplayHistory('Car overtaken');
   // }
 
-  // actionLeft() {
-  //   this._race.actionLeft();
-  //   this.updateGameplayHistory('Action Left');
-  //   this.points -= 1;
-  // }
+  actionLeft() {
+    this._race.actionLeft();
+    this.updateGameplayHistory('Action Left');
+    this.points -= 1;
+  }
 
   // actionRight() {
   //   this._race.actionRight();

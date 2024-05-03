@@ -4,7 +4,7 @@
   <p>Points: {{ points }}</p>
   <p>Time Spent: {{ timeSpent | date : "mm:ss" }}</p>
   <button [routerLink]="['/intro-page']">Quit game</button>
-  <button [routerLink]="['/score-page']">Finish</button>
+  <button [routerLink]="['/score-page']">Go to score page</button>
 
   <ngx-race>#game</ngx-race>
 
@@ -16,28 +16,24 @@
   <!-- <button *ngIf="gameStatus === 'Ready'" (click)="startGame()"> -->
   <button (click)="startGame()">Start</button>
   <!-- </button> -->
-  <!-- <button *ngIf="gameStatus === 'Started'" (click)="stopGame()"> -->
-  <!-- Pause Game -->
-  <!-- </button> -->
-  <!-- <button *ngIf="gameStatus === 'Paused'" (click)="resumeGame()"> -->
-  <!-- Resume Game -->
-  <!-- </button> -->
-  <!-- <button *ngIf="gameStatus !== 'Ready'" (click)="endGame()"> -->
-  <!-- Finish Game -->
-  <!-- </button> -->
+  <button *ngIf="gameStatus === 'Started'" (click)="stopGame()">Pause</button>
+  <button *ngIf="gameStatus === 'Paused'" (click)="resumeGame()">Resume</button>
+  <button *ngIf="gameStatus !== 'Ready'" (click)="endGame()">
+    Finish Game
+  </button>
 
-  <!-- <button *ngIf="gameStatus !== 'Ready'" (click)="resetGame()">Reset</button> -->
+  <button *ngIf="gameStatus !== 'Ready'" (click)="resetGame()">Reset</button>
   <br />
-  <!-- <button -->
-  <!-- [disabled]=" -->
-  <!-- gameStatus === 'Paused' || -->
-  <!-- gameStatus === 'Ready' || -->
-  <!-- gameStatus === 'Ended' -->
-  <!-- " -->
-  <!-- (click)="actionLeft()" -->
-  <!-- > -->
-  <!-- Left -->
-  <!-- </button> -->
+  <button
+    [disabled]="
+      gameStatus === 'Paused' ||
+      gameStatus === 'Ready' ||
+      gameStatus === 'Ended'
+    "
+    (click)="actionLeft()"
+  >
+    Left
+  </button>
   <!-- <button -->
   <!-- [disabled]=" -->
   <!-- gameStatus === 'Paused' || -->
