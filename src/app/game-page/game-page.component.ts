@@ -26,10 +26,13 @@ export class GamePageComponent {
   playerName: string;
   playerEmail: string;
   gameStatus: string;
-  points: number;
-  timeSpent: number;
+  points: number = 0;
+  timeSpent: number = 0;
   gameplayHistory: GameplayHistory[];
-  action: string;
+  action: string = '';
+  sortOrder = '';
+  selectedSortOrder: 'Newest first' | 'Oldest first' = 'Oldest first';
+  timer: NodeJS.Timer;
 
   @ViewChild(NgxRaceComponent)
   private _race: NgxRaceComponent;
@@ -80,9 +83,6 @@ export class GamePageComponent {
     return this.userInfoService.getGameStatus();
   }
 
-  // ngAfterViewInit() {
-  //   this.userInfoService.setRace(this._race);
-  // }
   setNewGameDataBeforeStart(): void {
     this.userInfoService.setNewGameDataBeforeStart(
       this.gameStatus,
@@ -98,13 +98,6 @@ export class GamePageComponent {
 
   //   selectedSortOrder: string;
   // }>();
-  timer: NodeJS.Timer;
-
-  // points: number = 0;
-  // timeSpent: number = 0;
-  // selectedAction = '';
-  // sortOrder = '';
-  // selectedSortOrder: 'Newest first' | 'Oldest first' = 'Oldest first';
 
   startGame(): void {
     this.gameStatus = 'Started';
@@ -123,18 +116,21 @@ export class GamePageComponent {
   // exitGame() {
   //   this.exitGameEvent.emit();
   // }
-  // finishGame() {
-  //   this.finishGameEvent.emit({
-  //     playerName: this.playerName,
-  //     playerEmail: this.playerEmail,
-  //     gameStatus: this.gameStatus,
-  //     points: this.points,
-  //     timeSpent: this.timeSpent,
-  //     selectedAction: this.selectedAction,
-  //     gameplayHistory: this.gameplayHistory,
-  //     selectedSortOrder: this.selectedSortOrder,
-  //   });
-  // }
+  finishGame() {
+    this.gameStatus = 'Ended';
+    this._router.navigate(['/score-page']);
+
+    //   this.finishGameEvent.emit({
+    //     playerName: this.playerName,
+    //     playerEmail: this.playerEmail,
+    //     gameStatus: this.gameStatus,
+    //     points: this.points,
+    //     timeSpent: this.timeSpent,
+    //     selectedAction: this.selectedAction,
+    //     gameplayHistory: this.gameplayHistory,
+    //     selectedSortOrder: this.selectedSortOrder,
+    //   });
+  }
 
   resumeGame() {
     this.gameStatus = 'Started';
@@ -171,10 +167,10 @@ export class GamePageComponent {
     this.updateGameplayHistory('Turbo Off');
   }
 
-  // grantPoints() {
-  //   this.points += 10;
-  //   this.updateGameplayHistory('Car overtaken');
-  // }
+  grantPoints() {
+    this.points += 10;
+    this.updateGameplayHistory('Car overtaken');
+  }
 
   actionLeft() {
     this._race.actionLeft();
@@ -198,13 +194,13 @@ export class GamePageComponent {
     clearInterval(this.timer as any);
   }
 
-  // gameOver() {
-  //   this.stopTimer();
-  //   this.gameStatus = 'Ended';
-  //   setTimeout(() => {
-  //     this.finishGame();
-  //   }, 2000);
-  // }
+  gameOver() {
+    this.stopTimer();
+    this.gameStatus = 'Ended';
+    setTimeout(() => {
+      this.finishGame();
+    }, 2000);
+  }
 
   updateGameplayHistory(action: string) {
     this.gameplayHistory = [

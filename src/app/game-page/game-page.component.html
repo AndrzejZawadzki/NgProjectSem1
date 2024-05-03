@@ -3,21 +3,34 @@
   <p>Game Status: {{ gameStatus }}</p>
   <p>Points: {{ points }}</p>
   <p>Time Spent: {{ timeSpent | date : "mm:ss" }}</p>
-  <button [routerLink]="['/intro-page']">Quit game</button>
+  <button class="red-button" [routerLink]="['/intro-page']">Quit game</button>
   <button [routerLink]="['/score-page']">Go to score page</button>
 
-  <ngx-race>#game</ngx-race>
-
-  <!-- (carOvertaken)="grantPoints()" -->
-  <!-- (gameOver)="gameOver()" -->
-  <!-- ></ngx-race> -->
+  <ngx-race (carOvertaken)="grantPoints()" (gameOver)="gameOver()"
+    >#game
+  </ngx-race>
   <br />
   <br />
   <!-- <button *ngIf="gameStatus === 'Ready'" (click)="startGame()"> -->
-  <button (click)="startGame()">Start</button>
-  <!-- </button> -->
+  <button
+    style="
+      background-color: green;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    "
+    (click)="startGame()"
+  >
+    Start
+  </button>
+
   <button *ngIf="gameStatus === 'Started'" (click)="stopGame()">Pause</button>
+
   <button *ngIf="gameStatus === 'Paused'" (click)="resumeGame()">Resume</button>
+
   <button *ngIf="gameStatus !== 'Ready'" (click)="endGame()">
     Finish Game
   </button>
@@ -67,26 +80,27 @@
   </button>
 
   <!-- Display gameplay history -->
-  <!-- <div> -->
-  <!-- <h3>Gameplay History</h3> -->
-  <!-- <select [(ngModel)]="selectedAction"> -->
-  <!-- <option value="">All</option> -->
-  <!-- <option>Game Started</option> -->
-  <!-- <option>Game Paused</option> -->
-  <!-- <option>Game Resumed</option> -->
-  <!-- <option>Car overtaken</option> -->
-  <!-- <option>Turbo On</option> -->
-  <!-- <option>Turbo Off</option> -->
-  <!-- </select> -->
-  <!-- <select [(ngModel)]="selectedSortOrder"> -->
-  <!-- <option value="Newest first">Newest first</option> -->
-  <!-- <option value="Oldest first">Oldest first</option> -->
-  <!-- </select> -->
-  <!-- <ul> -->
-  <!-- @for (event of gameplayHistory | filter:selectedAction | -->
-  <!-- sort:selectedSortOrder; track event){ -->
-  <!-- <li>{{ event.timeStamp | date : "medium" }} - {{ event.action }}</li> -->
-  <!-- } -->
-  <!-- </ul> -->
-  <!-- </div> -->
+  <div>
+    <h3>Gameplay History</h3>
+    <!-- <select [(ngModel)]="selectedAction"> -->
+    <!-- <option value="">All</option> -->
+    <!-- <option>Game Started</option> -->
+    <!-- <option>Game Paused</option> -->
+    <!-- <option>Game Resumed</option> -->
+    <!-- <option>Car overtaken</option> -->
+    <!-- <option>Turbo On</option> -->
+    <!-- <option>Turbo Off</option> -->
+    <!-- </select> -->
+    <!-- <select [(ngModel)]="selectedSortOrder"> -->
+    <!-- <option value="Newest first">Newest first</option> -->
+    <!-- <option value="Oldest first">Oldest first</option> -->
+    <!-- </select> -->
+    <!-- <ul> -->
+    <!-- @for (event of gameplayHistory | filter:selectedAction | -->
+    <!-- sort:selectedSortOrder; track event){ -->
+    <!-- <li>{{ event.timeStamp | date : "medium" }} - {{ event.action }}</li> -->
+    <!-- } -->
+    <!-- </ul> -->
+    <!-- </div> -->
+  </div>
 </div>
