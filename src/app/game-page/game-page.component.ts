@@ -159,15 +159,17 @@ export class GamePageComponent {
     this.points = 0;
     this.gameplayHistory = [];
   }
-  // turboOn() {
-  //   this._race.actionTurboOn();
-  //   this.updateGameplayHistory('Turbo On');
-  //   this.points += 3;
-  // }
-  // turboOff() {
-  //   this._race.actionTurboOff();
-  //   this.updateGameplayHistory('Turbo Off');
-  // }
+
+  turboOn() {
+    this._race.actionTurboOn();
+    this.updateGameplayHistory('Turbo On');
+    this.points += 3;
+  }
+
+  turboOff() {
+    this._race.actionTurboOff();
+    this.updateGameplayHistory('Turbo Off');
+  }
 
   // grantPoints() {
   //   this.points += 10;
@@ -180,11 +182,11 @@ export class GamePageComponent {
     this.points -= 1;
   }
 
-  // actionRight() {
-  //   this._race.actionRight();
-  //   this.updateGameplayHistory('Action Right');
-  //   this.points -= 1;
-  // }
+  actionRight() {
+    this._race.actionRight();
+    this.updateGameplayHistory('Action Right');
+    this.points -= 1;
+  }
 
   startTimer() {
     this.stopTimer();
