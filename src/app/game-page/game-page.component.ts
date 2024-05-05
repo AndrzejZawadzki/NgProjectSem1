@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { SortPipe } from '../sort.pipe';
 import { Router, RouterLink } from '@angular/router';
 import { UserInfoService } from '../user-info.service';
+import { GameInfoService } from '../game-info.service';
 
 @Component({
   selector: 'app-game-page',
@@ -33,6 +34,7 @@ export class GamePageComponent {
   sortOrder = '';
   selectedSortOrder: 'Newest first' | 'Oldest first' = 'Oldest first';
   timer: NodeJS.Timer;
+  selectedAction: string;
 
   @ViewChild(NgxRaceComponent)
   private _race: NgxRaceComponent;
@@ -61,6 +63,7 @@ export class GamePageComponent {
 
   constructor(
     private userInfoService: UserInfoService,
+    private gameInfoService: GameInfoService,
     private _router: Router
   ) {
     // if (this.userInfoService.isVerified === false) {
@@ -72,19 +75,19 @@ export class GamePageComponent {
 
     this.playerEmail = this.userInfoService.getPlayerEmail();
 
-    this.points = this.userInfoService.getPoints();
+    this.points = this.gameInfoService.getPoints();
 
-    this.timeSpent = this.userInfoService.getTimeSpent();
+    this.timeSpent = this.gameInfoService.getTimeSpent();
 
-    this.gameplayHistory = this.userInfoService.getGameplayHistory(this.action);
+    this.gameplayHistory = this.gameInfoService.getGameplayHistory(this.action);
   }
 
   getGameStatus() {
-    return this.userInfoService.getGameStatus();
+    return this.gameInfoService.getGameStatus();
   }
 
   setNewGameDataBeforeStart(): void {
-    this.userInfoService.setNewGameDataBeforeStart(
+    this.gameInfoService.setNewGameDataBeforeStart(
       this.gameStatus,
       this.points
     );
@@ -93,8 +96,6 @@ export class GamePageComponent {
   // @Input() gameplayHistory: GameplayHistory[] = [];
   // @Output() exitGameEvent = new EventEmitter<void>();
   // @Output() finishGameEvent = new EventEmitter<{
-
-  //   selectedAction: string;
 
   //   selectedSortOrder: string;
   // }>();
@@ -126,7 +127,7 @@ export class GamePageComponent {
     //     gameStatus: this.gameStatus,
     //     points: this.points,
     //     timeSpent: this.timeSpent,
-    //     selectedAction: this.selectedAction,
+    selectedAction: this.selectedAction;
     //     gameplayHistory: this.gameplayHistory,
     //     selectedSortOrder: this.selectedSortOrder,
     //   });
@@ -144,7 +145,7 @@ export class GamePageComponent {
     this._race.actionStop(); // End ngx-race
     this.updateGameplayHistory('Game Ended');
     this.stopTimer();
-    //this.finishGame();
+    this.finishGame();
   }
 
   resetGame() {
