@@ -12,9 +12,16 @@ export class GameInfoService {
 
   constructor() {}
 
-  setNewGameDataBeforeStart(gameStatus: string, points: number): void {
+  setGameData(
+    gameStatus: string,
+    points: number,
+    timeSpent: number,
+    gameplayHistory: GameplayHistory[]
+  ): void {
     this._gameStatus = gameStatus;
     this._points = points;
+    this._timeSpent = timeSpent;
+    this._gameplayHistory = gameplayHistory;
   }
 
   getGameStatus(): string {

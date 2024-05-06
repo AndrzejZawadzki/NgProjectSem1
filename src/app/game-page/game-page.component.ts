@@ -26,9 +26,9 @@ import { GameInfoService } from '../game-info.service';
 export class GamePageComponent {
   playerName: string;
   playerEmail: string;
-  gameStatus: string;
-  points: number = 0;
-  timeSpent: number = 0;
+  gameStatus: string = 'Ready';
+  points: number;
+  timeSpent: number;
   gameplayHistory: GameplayHistory[];
   action: string = '';
   sortOrder = '';
@@ -76,29 +76,30 @@ export class GamePageComponent {
     this.playerEmail = this.userInfoService.getPlayerEmail();
 
     this.points = this.gameInfoService.getPoints();
-
     this.timeSpent = this.gameInfoService.getTimeSpent();
 
     this.gameplayHistory = this.gameInfoService.getGameplayHistory(this.action);
   }
 
+  resetGameplayHistory() {
+    return this.gameInfoService.setGameData('Ready', 0, 0, []);
+  }
   getGameStatus() {
     return this.gameInfoService.getGameStatus();
   }
 
-  setNewGameDataBeforeStart(): void {
-    this.gameInfoService.setNewGameDataBeforeStart(
-      this.gameStatus,
-      this.points
-    );
+  getPoints() {
+    return this.gameInfoService.getPoints();
   }
 
-  // @Input() gameplayHistory: GameplayHistory[] = [];
-  // @Output() exitGameEvent = new EventEmitter<void>();
-  // @Output() finishGameEvent = new EventEmitter<{
-
-  //   selectedSortOrder: string;
-  // }>();
+  setGameData(): void {
+    this.gameInfoService.setGameData(
+      this.gameStatus,
+      this.points,
+      this.timeSpent,
+      this.gameplayHistory
+    );
+  }
 
   startGame(): void {
     this.gameStatus = 'Started';
@@ -114,23 +115,10 @@ export class GamePageComponent {
     this.updateGameplayHistory('Game Paused');
   }
 
-  // exitGame() {
-  //   this.exitGameEvent.emit();
-  // }
   finishGame() {
+    this.setGameData();
     this.gameStatus = 'Ended';
     this._router.navigate(['/score-page']);
-
-    //   this.finishGameEvent.emit({
-    //     playerName: this.playerName,
-    //     playerEmail: this.playerEmail,
-    //     gameStatus: this.gameStatus,
-    //     points: this.points,
-    //     timeSpent: this.timeSpent,
-    selectedAction: this.selectedAction;
-    //     gameplayHistory: this.gameplayHistory,
-    //     selectedSortOrder: this.selectedSortOrder,
-    //   });
   }
 
   resumeGame() {
@@ -201,6 +189,7 @@ export class GamePageComponent {
     setTimeout(() => {
       this.finishGame();
     }, 2000);
+    console.log('points from GPC', this.points);
   }
 
   updateGameplayHistory(action: string) {

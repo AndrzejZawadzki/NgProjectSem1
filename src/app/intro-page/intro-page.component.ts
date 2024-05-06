@@ -27,12 +27,7 @@ export class IntroPageComponent {
     private formBuilder: FormBuilder,
     private _router: Router,
     private userInfoService: UserInfoService
-  ) {
-    this.introForm = this.formBuilder.group({
-      playerName: ['', [Validators.required, Validators.minLength(3)]],
-      playerEmail: ['', [Validators.required, Validators.email]],
-    });
-  }
+  ) {}
 
   setPlayerData(): void {
     this.userInfoService.verifyUser();
