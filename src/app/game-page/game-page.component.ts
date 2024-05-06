@@ -27,9 +27,9 @@ export class GamePageComponent {
   playerName: string;
   playerEmail: string;
   gameStatus: string = 'Ready';
-  points: number;
-  timeSpent: number;
-  gameplayHistory: GameplayHistory[];
+  points: number = 0;
+  timeSpent: number = 0;
+  gameplayHistory: GameplayHistory[] = [];
   action: string = '';
   sortOrder = '';
   selectedSortOrder: 'Newest first' | 'Oldest first' = 'Oldest first';
@@ -75,10 +75,7 @@ export class GamePageComponent {
 
     this.playerEmail = this.userInfoService.getPlayerEmail();
 
-    this.points = this.gameInfoService.getPoints();
-    this.timeSpent = this.gameInfoService.getTimeSpent();
-
-    this.gameplayHistory = this.gameInfoService.getGameplayHistory(this.action);
+    this.gameplayHistory = [];
   }
 
   resetGameplayHistory() {
@@ -189,7 +186,6 @@ export class GamePageComponent {
     setTimeout(() => {
       this.finishGame();
     }, 2000);
-    console.log('points from GPC', this.points);
   }
 
   updateGameplayHistory(action: string) {

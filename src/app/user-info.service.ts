@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { GameplayHistory } from './models';
 
 @Injectable({
   providedIn: 'root',

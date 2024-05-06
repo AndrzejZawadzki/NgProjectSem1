@@ -27,6 +27,9 @@
     </ul>
     <button [routerLink]="['/intro-page']">Exit Game</button>
     <br /><br />
-    <button [routerLink]="['/game-page']">Play Again</button>
+    <!-- <button [routerLink]="['/game-page']">Play Again</button> -->
+    <form #form (ngSubmit)="playAgain()">
+      <button type="submit">Play again</button>
+    </form>
   </div>
 </div>

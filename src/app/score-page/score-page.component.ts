@@ -38,5 +38,13 @@ export class ScorePageComponent {
     this.playerName = this.userInfoService.getPlayerName();
     this.points = this.gameInfoService.getPoints();
     this.timeSpent = this.gameInfoService.getTimeSpent();
+    this.gameplayHistory = this.gameInfoService.getGameplayHistory();
+  }
+
+  playAgain(): void {
+    this.points = 0;
+    this.timeSpent = 0;
+    this.gameplayHistory = [];
+    this._router.navigate(['/game-page']);
   }
 }

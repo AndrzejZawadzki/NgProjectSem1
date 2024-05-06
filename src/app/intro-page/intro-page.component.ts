@@ -1,12 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  NgForm,
-  Validators,
-} from '@angular/forms';
+import { FormGroup, FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserInfoService } from '../user-info.service';
 
@@ -24,7 +18,6 @@ export class IntroPageComponent {
   playerEmail: string;
 
   constructor(
-    private formBuilder: FormBuilder,
     private _router: Router,
     private userInfoService: UserInfoService
   ) {}
