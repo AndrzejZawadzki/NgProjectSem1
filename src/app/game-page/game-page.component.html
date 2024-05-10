@@ -1,87 +1,108 @@
-<div>
-  <h2>Welcome, {{ playerName }}!</h2>
-  Game Status: {{ gameStatus }} Points: {{ points }} Time Spent:
-  {{ timeSpent | date : "mm:ss" }}
-  <br />
-  <br />
-  <button class="red-button" [routerLink]="['/intro-page']">Quit game</button>
-  <button [routerLink]="['/score-page']">Go to score page</button>
+<body>
+  <div class="container">
+    <h3>Good luck {{ playerName }}!</h3>
+    <h5>
+      Game Status: {{ gameStatus }} Scores: {{ points }} Time:
+      {{ timeSpent | date : "mm:ss" }}
+    </h5>
+    <button class="red-button" [routerLink]="['/intro-page']">Quit game</button>
+    <button class="red-button" [routerLink]="['/score-page']">
+      Go to score page
+    </button>
+    <div class="center-container">
+      <ngx-race (carOvertaken)="grantPoints()" (gameOver)="gameOver()"
+        >#game
+      </ngx-race>
+    </div>
 
-  <ngx-race (carOvertaken)="grantPoints()" (gameOver)="gameOver()"
-    >#game
-  </ngx-race>
-  <br />
-  <br />
-  <!-- <button *ngIf="gameStatus === 'Ready'" (click)="startGame()"> -->
-  <button
-    style="
-      background-color: green;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    "
-    *ngIf="gameStatus === 'Ready'"
-    (click)="startGame()"
-  >
-    Start
-  </button>
+    <br />
+    <br />
+    <button
+      class="green-button"
+      *ngIf="gameStatus === 'Ready'"
+      (click)="startGame()"
+    >
+      Start
+    </button>
+    <button
+      class="green-button"
+      *ngIf="gameStatus === 'Started'"
+      (click)="stopGame()"
+    >
+      Pause
+    </button>
 
-  <button *ngIf="gameStatus === 'Started'" (click)="stopGame()">Pause</button>
+    <button
+      class="green-button"
+      *ngIf="gameStatus === 'Paused'"
+      (click)="resumeGame()"
+    >
+      Resume
+    </button>
 
-  <button *ngIf="gameStatus === 'Paused'" (click)="resumeGame()">Resume</button>
+    <button
+      class="green-button"
+      *ngIf="gameStatus !== 'Ready'"
+      (click)="endGame()"
+    >
+      Finish Game
+    </button>
 
-  <button *ngIf="gameStatus !== 'Ready'" (click)="endGame()">
-    Finish Game
-  </button>
+    <button
+      class="green-button"
+      *ngIf="gameStatus !== 'Ready'"
+      (click)="resetGame()"
+    >
+      Reset
+    </button>
+    <br />
+    <button
+      class="green-button"
+      [disabled]="
+        gameStatus === 'Paused' ||
+        gameStatus === 'Ready' ||
+        gameStatus === 'Ended'
+      "
+      (click)="actionLeft()"
+    >
+      <--Left
+    </button>
+    <button
+      class="green-button"
+      [disabled]="
+        gameStatus === 'Paused' ||
+        gameStatus === 'Ready' ||
+        gameStatus === 'Ended'
+      "
+      (click)="actionRight()"
+    >
+      Right-->
+    </button>
+    <br />
+    <button
+      class="green-button"
+      [disabled]="
+        gameStatus === 'Paused' ||
+        gameStatus === 'Ready' ||
+        gameStatus === 'Ended'
+      "
+      (click)="turboOn()"
+    >
+      Turbo ON
+    </button>
+    <button
+      class="green-button"
+      [disabled]="
+        gameStatus === 'Paused' ||
+        gameStatus === 'Ready' ||
+        gameStatus === 'Ended'
+      "
+      (click)="turboOff()"
+    >
+      Turbo OFF
+    </button>
 
-  <button *ngIf="gameStatus !== 'Ready'" (click)="resetGame()">Reset</button>
-  <br />
-  <button
-    [disabled]="
-      gameStatus === 'Paused' ||
-      gameStatus === 'Ready' ||
-      gameStatus === 'Ended'
-    "
-    (click)="actionLeft()"
-  >
-    Left
-  </button>
-  <button
-    [disabled]="
-      gameStatus === 'Paused' ||
-      gameStatus === 'Ready' ||
-      gameStatus === 'Ended'
-    "
-    (click)="actionRight()"
-  >
-    Right
-  </button>
-  <br />
-  <button
-    [disabled]="
-      gameStatus === 'Paused' ||
-      gameStatus === 'Ready' ||
-      gameStatus === 'Ended'
-    "
-    (click)="turboOn()"
-  >
-    Turbo ON
-  </button>
-  <button
-    [disabled]="
-      gameStatus === 'Paused' ||
-      gameStatus === 'Ready' ||
-      gameStatus === 'Ended'
-    "
-    (click)="turboOff()"
-  >
-    Turbo OFF
-  </button>
-
-  <div>
+    <!-- <div>
     <h3>Gameplay History</h3>
     <select [(ngModel)]="selectedAction">
       <option value="">All</option>
@@ -102,5 +123,6 @@
       <li>{{ event.timeStamp | date : "medium" }} - {{ event.action }}</li>
       }
     </ul>
+  </div> -->
   </div>
-</div>
+</body>

@@ -5,6 +5,13 @@
 
   <!-- Display gameplay history -->
   <div>
+    <h3>Scores</h3>
+    <ul>
+      @for (event of scores ; track event){
+      <li>{{ event.name }} - {{ event.score }}</li>
+      }
+    </ul>
+
     <h3>Gameplay History</h3>
     <select [(ngModel)]="selectedAction">
       <option value="">All</option>
@@ -27,7 +34,6 @@
     </ul>
     <button [routerLink]="['/intro-page']">Exit Game</button>
     <br /><br />
-    <!-- <button [routerLink]="['/game-page']">Play Again</button> -->
     <form #form (ngSubmit)="playAgain()">
       <button type="submit">Play again</button>
     </form>

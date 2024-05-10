@@ -15,3 +15,8 @@ export enum selectedAction {
   'Action Left',
   'Action Right',
 }
+
+export interface Scores {
+  name: string;
+  score: number;
+}
