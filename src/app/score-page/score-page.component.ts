@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormsModule } from '@angular/forms';
 import { GameplayHistory, Scores } from '../models';
 import { FilterPipe } from '../filter.pipe';
 import { SortPipe } from '../sort.pipe';
