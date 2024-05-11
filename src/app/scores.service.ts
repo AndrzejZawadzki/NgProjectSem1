@@ -9,8 +9,8 @@ export class ScoresService {
 
   constructor() {}
 
-  setScore(scores: Scores[]): void {
-    this._scores = scores;
+  setScore(scores: Scores[]) {
+    return (this._scores = scores);
   }
 
   getScores() {

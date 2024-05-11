@@ -11,6 +11,7 @@ export const appConfig: ApplicationConfig = {
       { path: 'intro-page', component: IntroPageComponent },
       { path: 'game-page', component: GamePageComponent },
       { path: 'score-page', component: ScorePageComponent },
+      { path: '**', redirectTo: 'intro-page', pathMatch: 'full' },
     ]),
   ],
 };
