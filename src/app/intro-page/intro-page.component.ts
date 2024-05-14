@@ -51,23 +51,23 @@ export class IntroPageComponent {
     private _router: Router,
     private userInfoService: UserInfoService,
     private _tokenAuthService: TokenAuthService
-  ) {
-    // console.log('StudentID: ', this.studentID);
-  }
+  ) {}
 
   setPlayerData(): void {
     this._tokenAuthService
       .auth(this.playerForm.value.studentID!.toString())
       .subscribe((data) => {
-        this.isAuthorized = data.success === true;
-        console.log('Is authorized: ', data.success);
+        if (data.success) {
+          this.userInfoService.verifyUser();
+          this.userInfoService.setPlayerData(
+            this.playerForm.value.playerName!,
+            this.playerForm.value.studentID!
+          );
+          this._router.navigate(['/game-page']);
+        } else {
+          alert('Invalid ID');
+          this.playerForm.patchValue({ playerName: null, studentID: null });
+        }
       });
-
-    this.userInfoService.verifyUser();
-    this.userInfoService.setPlayerData(
-      this.playerForm.value.playerName!,
-      this.playerForm.value.studentID!
-    );
-    this._router.navigate(['/game-page']);
   }
 }
