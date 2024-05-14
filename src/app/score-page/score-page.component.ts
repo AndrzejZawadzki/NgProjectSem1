@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule } from '@angular/forms';
-import { GameplayHistory, Scores } from '../models';
+import { GameplayHistory, Score } from '../models';
 import { FilterPipe } from '../filter.pipe';
 import { SortPipe } from '../sort.pipe';
 import { Router, RouterLink } from '@angular/router';
@@ -26,34 +26,34 @@ export class ScorePageComponent {
   sortOrder: string;
   selectedSortOrder: 'Newest first' | 'Oldest first' = 'Oldest first';
   selectedAction: string;
-  scores: Scores[] = [];
+  allScores: Score[] = [];
 
   constructor(
-    private userInfoService: UserInfoService,
+    private _userInfoService: UserInfoService,
     private _router: Router,
-    private gameInfoService: GameInfoService,
-    private scoresService: ScoresService
+    private _gameInfoService: GameInfoService,
+    private _scoresService: ScoresService
   ) {
-    if (this.userInfoService.isVerified === false) {
-      alert('Please enter your name and email');
-      this._router.navigate(['/intro-page']);
-    }
-    this.playerName = this.userInfoService.getPlayerName();
-    this.points = this.gameInfoService.getPoints();
-    this.timeSpent = this.gameInfoService.getTimeSpent();
-    this.gameplayHistory = this.gameInfoService.getGameplayHistory();
-    this.scores = this.scoresService.getScores();
+    // if (this.userInfoService.isVerified === false) {
+    //   alert('Please enter your name and email');
+    //   this._router.navigate(['/intro-page']);
+    // }
+
+    this._scoresService.load().subscribe((data) => {
+      this.allScores = data;
+      console.log('allScores ', this.allScores);
+    });
+
+    this.playerName = this._userInfoService.getPlayerName();
+    this.points = this._gameInfoService.getPoints();
+    this.timeSpent = this._gameInfoService.getTimeSpent();
+    this.gameplayHistory = this._gameInfoService.getGameplayHistory();
   }
 
   playAgain(): void {
     this.points = 0;
     this.timeSpent = 0;
     this.gameplayHistory = [];
-    this.updateScores(this.playerName, this.points);
     this._router.navigate(['/game-page']);
-  }
-
-  updateScores(name: string, score: number) {
-    this.scores = [...this.scores, { name, score }];
   }
 }

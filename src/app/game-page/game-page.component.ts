@@ -66,10 +66,10 @@ export class GamePageComponent {
     private gameInfoService: GameInfoService,
     private _router: Router
   ) {
-    if (this.userInfoService.isVerified === false) {
-      alert('Please enter your name and email');
-      this._router.navigate(['/intro-page']);
-    }
+    // if (this.userInfoService.isVerified === false) {
+    //   alert('Please enter your name and email');
+    //   this._router.navigate(['/intro-page']);
+    // }
 
     this.playerName = this.userInfoService.getPlayerName();
 

@@ -7,7 +7,7 @@
   <div>
     <h3>Scores</h3>
     <ul>
-      @for (event of scores ; track event){
+      @for (event of allScores ; track event){
       <li>{{ event.name }} - {{ event.score }}</li>
       }
     </ul>

@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Scores } from './models';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Score } from './models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ScoresService {
-  private _scores: Scores[] = [];
+  constructor(private _http: HttpClient) {}
 
-  constructor() {}
-
-  setScore(scores: Scores[]) {
-    return (this._scores = scores);
-  }
-
-  getScores() {
-    return this._scores;
+  public load() {
+    const URL = 'https://scores.chrum.it/scores/race';
+    const headers = new HttpHeaders({ accept: 'application/json' });
+    return this._http.get<Score[]>(URL, { headers });
   }
 }
