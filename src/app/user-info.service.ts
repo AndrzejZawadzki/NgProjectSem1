@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class UserInfoService {
   private _userInfoVerified: boolean = false;
   private _playerName: string;
-  private _playerEmail: string;
+  private _studentID: string;
 
   public get isVerified() {
     return this._userInfoVerified;
@@ -20,16 +20,16 @@ export class UserInfoService {
 
   constructor() {}
 
-  setPlayerData(name: string, email: string): void {
+  setPlayerData(name: string, ID: string): void {
     this._playerName = name;
-    this._playerEmail = email;
+    this._studentID = ID;
   }
 
   getPlayerName(): string {
     return this._playerName;
   }
 
-  getPlayerEmail(): string {
-    return this._playerEmail;
+  getStudentID(): string {
+    return this._studentID;
   }
 }

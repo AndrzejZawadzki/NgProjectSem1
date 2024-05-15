@@ -26,16 +26,21 @@ export class IntroPageComponent {
   introForm: FormGroup;
   @ViewChild('form') form: NgForm;
   playerName: string;
-  studentID: number;
+  studentID: string;
   isAuthorized: boolean;
 
   private _fb = inject(FormBuilder);
 
-  public playerForm = this._fb.group({
+  public playerForm: FormGroup = this._fb.group({
     playerName: ['', [Validators.required, Validators.minLength(3)]],
     studentID: [
       '',
-      [Validators.required, Validators.minLength(4), Validators.maxLength(4)],
+      [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(4),
+        Validators.pattern('^[0-9]+$'),
+      ],
     ],
   });
 
@@ -44,7 +49,7 @@ export class IntroPageComponent {
   }
 
   public get ID() {
-    return this.playerForm.controls.studentID;
+    return this.playerForm.controls['studentID'];
   }
 
   public constructor(
@@ -54,20 +59,20 @@ export class IntroPageComponent {
   ) {}
 
   setPlayerData(): void {
-    this._tokenAuthService
-      .auth(this.playerForm.value.studentID!.toString())
-      .subscribe((data) => {
-        if (data.success) {
-          this.userInfoService.verifyUser();
-          this.userInfoService.setPlayerData(
-            this.playerForm.value.playerName!,
-            this.playerForm.value.studentID!
-          );
-          this._router.navigate(['/game-page']);
-        } else {
-          alert('Invalid ID');
-          this.playerForm.patchValue({ playerName: null, studentID: null });
-        }
-      });
+    const studentIDString: string = this.playerForm.value.studentID!.toString();
+    this._tokenAuthService.auth(studentIDString).subscribe((data) => {
+      if (data.success) {
+        this.userInfoService.verifyUser();
+        this.userInfoService.setPlayerData(
+          this.playerForm.value.playerName!,
+          this.playerForm.value.studentID!
+        );
+        this._router.navigate(['/game-page']);
+      } else {
+        alert('Invalid ID');
+        console.log(data.success);
+        this.playerForm.patchValue({ playerName: '', studentID: '' });
+      }
+    });
   }
 }

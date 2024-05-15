@@ -25,7 +25,7 @@ import { GameInfoService } from '../game-info.service';
 })
 export class GamePageComponent {
   playerName: string;
-  playerEmail: string;
+  studentID: string;
   gameStatus: string = 'Ready';
   points: number = 0;
   timeSpent: number = 0;
@@ -73,7 +73,7 @@ export class GamePageComponent {
 
     this.playerName = this.userInfoService.getPlayerName();
 
-    this.playerEmail = this.userInfoService.getPlayerEmail();
+    this.studentID = this.userInfoService.getStudentID();
 
     this.gameplayHistory = [];
   }

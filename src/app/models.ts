@@ -18,6 +18,7 @@ export enum selectedAction {
 
 export interface Score {
   name: string;
+  game: string;
   score: number;
 }
 

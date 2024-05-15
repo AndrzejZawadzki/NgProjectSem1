@@ -18,7 +18,6 @@ import { ScoresService } from '../scores.service';
 })
 export class ScorePageComponent {
   playerName: string;
-  playerEmail: string;
   points: number;
   timeSpent: number;
   gameplayHistory: GameplayHistory[];
@@ -27,6 +26,7 @@ export class ScorePageComponent {
   selectedSortOrder: 'Newest first' | 'Oldest first' = 'Oldest first';
   selectedAction: string;
   allScores: Score[] = [];
+  studentID: string;
 
   constructor(
     private _userInfoService: UserInfoService,
@@ -43,6 +43,17 @@ export class ScorePageComponent {
       this.allScores = data;
       console.log('allScores ', this.allScores);
     });
+
+    this._scoresService
+      .postMyScores(
+        this._userInfoService.getStudentID(),
+        this._userInfoService.getPlayerName(),
+        this._gameInfoService.getPoints()
+      )
+      .subscribe((data) => {
+        this.allScores = data;
+        console.log('allScoresPoDodaniu: ', this.allScores);
+      });
 
     this.playerName = this._userInfoService.getPlayerName();
     this.points = this._gameInfoService.getPoints();
