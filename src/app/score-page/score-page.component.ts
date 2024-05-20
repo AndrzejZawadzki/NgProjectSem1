@@ -27,6 +27,15 @@ export class ScorePageComponent {
   selectedAction: string;
   allScores: Score[] = [];
   studentID: string;
+  myNameSelected: boolean = false;
+
+  get filteredScores(): Score[] {
+    if (this.myNameSelected) {
+      return this.allScores.filter((score) => score.name === this.playerName);
+    } else {
+      return this.allScores;
+    }
+  }
 
   constructor(
     private _userInfoService: UserInfoService,
@@ -41,7 +50,6 @@ export class ScorePageComponent {
 
     this._scoresService.load().subscribe((data) => {
       this.allScores = data;
-      console.log('allScores ', this.allScores);
     });
 
     this._scoresService
@@ -52,8 +60,11 @@ export class ScorePageComponent {
       )
       .subscribe((data) => {
         this.allScores = data;
-        console.log('allScoresPoDodaniu: ', this.allScores);
       });
+
+    this._scoresService.load().subscribe((data) => {
+      this.allScores = data;
+    });
 
     this.playerName = this._userInfoService.getPlayerName();
     this.points = this._gameInfoService.getPoints();

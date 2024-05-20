@@ -6,12 +6,25 @@
   <!-- Display gameplay history -->
   <div>
     <h3>Scores</h3>
-    <ul>
-      @for (event of allScores ; track event){
-      <li>{{ event.name }} - {{ event.score }}</li>
+    <label>
+      <input
+        type="checkbox"
+        [(ngModel)]="myNameSelected"
+        name="onlyMyCheckbox"
+      />
+      Show only my scores
+    </label>
+    <div>
+      <!-- @for (event of allScores ; track event; let i = $index) -->
+      @for (event of filteredScores; track event; let i = $index) {
+      <li>
+        {{ i + 1 }}.
+        {{ event.name }}
+        -
+        {{ event.score }}
+      </li>
       }
-    </ul>
-
+    </div>
     <h3>Gameplay History</h3>
     <select [(ngModel)]="selectedAction">
       <option value="">All</option>
