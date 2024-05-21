@@ -30,11 +30,11 @@ export class ScorePageComponent {
   myNameSelected: boolean = false;
 
   get filteredScores(): Score[] {
+    let scores = this.allScores;
     if (this.myNameSelected) {
-      return this.allScores.filter((score) => score.name === this.playerName);
-    } else {
-      return this.allScores;
+      scores = scores.filter((score) => score.name === this.playerName);
     }
+    return scores.sort((a, b) => b.score - a.score).slice(0, 10);
   }
 
   constructor(
