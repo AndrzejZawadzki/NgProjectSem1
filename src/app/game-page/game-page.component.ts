@@ -5,7 +5,7 @@ import { FilterPipe } from '../filter.pipe';
 import { GameplayHistory } from '../models';
 import { FormsModule } from '@angular/forms';
 import { SortPipe } from '../sort.pipe';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { UserInfoService } from '../user-info.service';
 import { GameInfoService } from '../game-info.service';
 
@@ -64,8 +64,13 @@ export class GamePageComponent {
   constructor(
     private userInfoService: UserInfoService,
     private gameInfoService: GameInfoService,
-    private _router: Router
+    private _router: Router,
+    private _route: ActivatedRoute
   ) {
+    console.log(this._route.snapshot.params['colors']);
+    this._route.params.subscribe((params) => {
+      console.log('Params from $ ', params['colors']);
+    });
     // if (this.userInfoService.isVerified === false) {
     //   alert('Please enter your name and email');
     //   this._router.navigate(['/intro-page']);

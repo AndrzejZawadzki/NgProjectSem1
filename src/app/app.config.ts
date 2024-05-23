@@ -10,6 +10,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter([
       { path: 'intro-page', component: IntroPageComponent },
       { path: 'game-page', component: GamePageComponent },
+      { path: 'game-page/:colors', component: GamePageComponent },
       { path: 'score-page', component: ScorePageComponent },
       { path: '**', redirectTo: 'intro-page', pathMatch: 'full' },
     ]),

@@ -26,6 +26,15 @@
     />
     <br />
     <br />
+    <select
+      ngModel
+      name="selectedColor"
+      [ngModelOptions]="{ standalone: true }"
+    >
+      <option value="normal">Normal</option>
+      <option value="highContrast">High contrast</option>
+    </select>
+    <br />
     <br />
     <button [disabled]="playerForm.invalid" type="submit">Start game</button>
   </form>
