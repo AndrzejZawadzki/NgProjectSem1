@@ -10,7 +10,10 @@
       Go to score page
     </button>
     <div class="center-container">
-      <ngx-race (carOvertaken)="grantPoints()" (gameOver)="gameOver()"
+      <ngx-race
+        [ngClass]="{ 'black-and-white': selectedColor === 'highContrast' }"
+        (carOvertaken)="grantPoints()"
+        (gameOver)="gameOver()"
         >#game
       </ngx-race>
     </div>

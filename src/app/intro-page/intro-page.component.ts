@@ -41,6 +41,7 @@ export class IntroPageComponent {
         Validators.pattern('^[0-9]+$'),
       ],
     ],
+    selectedColor: ['Normal'],
   });
 
   public get name() {
@@ -58,7 +59,6 @@ export class IntroPageComponent {
   ) {}
 
   setPlayerData(): void {
-    console.log(this.introForm);
     const studentIDString: string = this.playerForm.value.studentID!.toString();
     this._tokenAuthService.auth(studentIDString).subscribe((data) => {
       if (data.success) {
@@ -67,7 +67,10 @@ export class IntroPageComponent {
           this.playerForm.value.playerName!,
           this.playerForm.value.studentID!
         );
-        this._router.navigate(['/game-page']);
+
+        const selectedColor = this.playerForm.value.selectedColor;
+
+        this._router.navigate(['/game-page', selectedColor]);
       } else {
         alert('Invalid ID');
         this.playerForm.patchValue({ playerName: '', studentID: '' });

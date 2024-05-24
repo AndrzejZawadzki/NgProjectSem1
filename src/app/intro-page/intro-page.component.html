@@ -26,11 +26,8 @@
     />
     <br />
     <br />
-    <select
-      ngModel
-      name="selectedColor"
-      [ngModelOptions]="{ standalone: true }"
-    >
+    <label>Select color mode </label>
+    <select formControlName="selectedColor" type="text" class="form-control">
       <option value="normal">Normal</option>
       <option value="highContrast">High contrast</option>
     </select>

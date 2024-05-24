@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+
 body {
   margin: 0;
   padding: 0;
@@ -45,4 +46,29 @@ body {
 .center-container {
   display: flex;
   justify-content: center;
+}
+
+ngx-race {
+  &.black-and-white {
+    ngx-race-tile {
+      background: #ffffff;
+      &.free {
+        div {
+          background: #ffffff;
+        }
+      }
+
+      &.car {
+        div {
+          background: #000000;
+        }
+      }
+
+      &.othercar {
+        div {
+          background: #f20404;
+        }
+      }
+    }
+  }
 }

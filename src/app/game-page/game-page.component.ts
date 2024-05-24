@@ -35,6 +35,7 @@ export class GamePageComponent {
   selectedSortOrder: 'Newest first' | 'Oldest first' = 'Oldest first';
   timer: NodeJS.Timer;
   selectedAction: string;
+  selectedColor: string;
 
   @ViewChild(NgxRaceComponent)
   private _race: NgxRaceComponent;
@@ -70,11 +71,15 @@ export class GamePageComponent {
     console.log(this._route.snapshot.params['colors']);
     this._route.params.subscribe((params) => {
       console.log('Params from $ ', params['colors']);
+      const selectedColor = params['colors'];
+      console.log(selectedColor);
     });
     // if (this.userInfoService.isVerified === false) {
     //   alert('Please enter your name and email');
     //   this._router.navigate(['/intro-page']);
     // }
+
+    this.selectedColor = this._route.snapshot.params['colors'];
 
     this.playerName = this.userInfoService.getPlayerName();
 
