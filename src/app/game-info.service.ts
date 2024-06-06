@@ -9,7 +9,6 @@ export class GameInfoService {
   private _points: number = 0;
   private _timeSpent: number = 0;
   private _gameplayHistory: GameplayHistory[] = [];
-  private _action: string;
 
   constructor() {}
 

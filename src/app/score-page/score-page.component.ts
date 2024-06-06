@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, DestroyRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { GameplayHistory, Score } from '../models';
 import { FilterPipe } from '../filter.pipe';
@@ -8,6 +8,8 @@ import { Router, RouterLink } from '@angular/router';
 import { UserInfoService } from '../user-info.service';
 import { GameInfoService } from '../game-info.service';
 import { ScoresService } from '../scores.service';
+import { interval, switchMap, takeUntil } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-score-page',
@@ -41,13 +43,24 @@ export class ScorePageComponent {
     private _userInfoService: UserInfoService,
     private _router: Router,
     private _gameInfoService: GameInfoService,
-    private _scoresService: ScoresService
+    private _scoresService: ScoresService,
+    private _destroyRef: DestroyRef
   ) {
-    // if (this.userInfoService.isVerified === false) {
-    //   alert('Please enter your name and email');
-    //   this._router.navigate(['/intro-page']);
-    // }
-
+    if (this._userInfoService.isVerified === false) {
+      alert('Please enter your name and email');
+      this._router.navigate(['/intro-page']);
+    }
+    interval(2000)
+      .pipe(
+        switchMap(() => {
+          return this._scoresService.load();
+        }),
+        takeUntilDestroyed(this._destroyRef)
+      )
+      .subscribe((data) => {
+        this.allScores = data;
+        console.log(data);
+      });
     this._scoresService.load().subscribe((data) => {
       this.allScores = data;
     });
@@ -61,10 +74,6 @@ export class ScorePageComponent {
       .subscribe((data) => {
         this.allScores = data;
       });
-
-    this._scoresService.load().subscribe((data) => {
-      this.allScores = data;
-    });
 
     this.playerName = this._userInfoService.getPlayerName();
     this.points = this._gameInfoService.getPoints();

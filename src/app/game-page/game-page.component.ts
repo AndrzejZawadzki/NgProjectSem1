@@ -74,10 +74,10 @@ export class GamePageComponent {
       const selectedColor = params['colors'];
       console.log(selectedColor);
     });
-    // if (this.userInfoService.isVerified === false) {
-    //   alert('Please enter your name and email');
-    //   this._router.navigate(['/intro-page']);
-    // }
+    if (this.userInfoService.isVerified === false) {
+      alert('Please enter your name and email');
+      this._router.navigate(['/intro-page']);
+    }
 
     this.selectedColor = this._route.snapshot.params['colors'];
 
