@@ -17,7 +17,6 @@
         >#game
       </ngx-race>
     </div>
-
     <br />
     <br />
     <button
@@ -104,28 +103,5 @@
     >
       Turbo OFF
     </button>
-
-    <!-- <div>
-    <h3>Gameplay History</h3>
-    <select [(ngModel)]="selectedAction">
-      <option value="">All</option>
-      <option>Game Started</option>
-      <option>Game Paused</option>
-      <option>Game Resumed</option>
-      <option>Car overtaken</option>
-      <option>Turbo On</option>
-      <option>Turbo Off</option>
-    </select>
-    <select [(ngModel)]="selectedSortOrder">
-      <option value="Newest first">Newest first</option>
-      <option value="Oldest first">Oldest first</option>
-    </select>
-    <ul>
-      @for (event of gameplayHistory | filter:selectedAction |
-      sort:selectedSortOrder; track event){
-      <li>{{ event.timeStamp | date : "medium" }} - {{ event.action }}</li>
-      }
-    </ul>
-  </div> -->
   </div>
 </body>

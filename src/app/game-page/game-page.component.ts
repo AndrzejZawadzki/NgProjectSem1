@@ -68,12 +68,6 @@ export class GamePageComponent {
     private _router: Router,
     private _route: ActivatedRoute
   ) {
-    console.log(this._route.snapshot.params['colors']);
-    this._route.params.subscribe((params) => {
-      console.log('Params from $ ', params['colors']);
-      const selectedColor = params['colors'];
-      console.log(selectedColor);
-    });
     if (this.userInfoService.isVerified === false) {
       alert('Please enter your name and email');
       this._router.navigate(['/intro-page']);
@@ -125,7 +119,7 @@ export class GamePageComponent {
   finishGame() {
     this.setGameData();
     this.gameStatus = 'Ended';
-    this._router.navigate(['/score-page']);
+    this._router.navigate(['/score-page' /*, this.selectedColor*/]);
   }
 
   resumeGame() {
@@ -164,7 +158,7 @@ export class GamePageComponent {
   }
 
   grantPoints() {
-    this.points += 10;
+    this.points += 120;
     this.updateGameplayHistory('Car overtaken');
   }
 

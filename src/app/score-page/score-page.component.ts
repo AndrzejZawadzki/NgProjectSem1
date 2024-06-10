@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { GameplayHistory, Score } from '../models';
 import { FilterPipe } from '../filter.pipe';
 import { SortPipe } from '../sort.pipe';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { UserInfoService } from '../user-info.service';
 import { GameInfoService } from '../game-info.service';
 import { ScoresService } from '../scores.service';
-import { interval, switchMap, takeUntil } from 'rxjs';
+import { interval, switchMap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -30,6 +30,7 @@ export class ScorePageComponent {
   allScores: Score[] = [];
   studentID: string;
   myNameSelected: boolean = false;
+  selectedColor: string;
 
   get filteredScores(): Score[] {
     let scores = this.allScores;
@@ -50,7 +51,7 @@ export class ScorePageComponent {
       alert('Please enter your name and email');
       this._router.navigate(['/intro-page']);
     }
-    interval(2000)
+    interval(30000)
       .pipe(
         switchMap(() => {
           return this._scoresService.load();
@@ -78,13 +79,19 @@ export class ScorePageComponent {
     this.playerName = this._userInfoService.getPlayerName();
     this.points = this._gameInfoService.getPoints();
     this.timeSpent = this._gameInfoService.getTimeSpent();
-    this.gameplayHistory = this._gameInfoService.getGameplayHistory();
+    this.gameplayHistory = this._gameInfoService
+      .getGameplayHistory()
+      .slice(0, 8);
   }
 
   playAgain(): void {
     this.points = 0;
     this.timeSpent = 0;
     this.gameplayHistory = [];
-    this._router.navigate(['/game-page']);
+
+    this._router.navigate([
+      '/game-page',
+      localStorage.getItem('selectedColor'),
+    ]);
   }
 }

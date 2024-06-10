@@ -17,14 +17,19 @@
       <br />
     </label>
     <div>
-      <!-- @for (event of allScores ; track event; let i = $index) -->
       @for (event of filteredScores; track event; let i = $index) {
-      <li>
-        {{ i + 1 }}.
-        {{ event.name }}
+      <ul>
+        {{
+          i + 1
+        }}.
+        {{
+          event.name
+        }}
         -
-        {{ event.score }}
-      </li>
+        {{
+          event.score
+        }}
+      </ul>
       }
     </div>
     <h3>Gameplay History</h3>
@@ -41,12 +46,16 @@
       <option value="Newest first">Newest first</option>
       <option value="Oldest first">Oldest first</option>
     </select>
-    <ul>
-      @for (event of gameplayHistory | filter:selectedAction |
-      sort:selectedSortOrder; track event){
-      <li>{{ event.timeStamp | date : "medium" }} - {{ event.action }}</li>
-      }
-    </ul>
+
+    @for (event of gameplayHistory | filter:selectedAction |
+    sort:selectedSortOrder; track event){
+    <li>
+      {{ event.timeStamp | date : "medium" }}
+      -
+      {{ event.action }}
+    </li>
+    }
+
     <button [routerLink]="['/intro-page']">Exit Game</button>
     <br /><br />
     <form #form (ngSubmit)="playAgain()">

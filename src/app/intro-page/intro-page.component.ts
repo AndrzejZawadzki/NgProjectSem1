@@ -29,7 +29,6 @@ export class IntroPageComponent {
   public isAuthorized: boolean;
   private _fb = inject(FormBuilder);
   public selectedColor: string = '';
-
   public playerForm: FormGroup = this._fb.group({
     playerName: ['', [Validators.required, Validators.minLength(3)]],
     studentID: [
@@ -69,7 +68,7 @@ export class IntroPageComponent {
         );
 
         const selectedColor = this.playerForm.value.selectedColor;
-
+        localStorage.setItem('selectedColor', selectedColor);
         this._router.navigate(['/game-page', selectedColor]);
       } else {
         alert('Invalid ID');
